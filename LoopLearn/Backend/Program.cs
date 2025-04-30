@@ -1,4 +1,5 @@
-namespace LoopLearn
+using LoopLearn.Frontend;
+namespace LoopLearn.Backend
 {
     internal static class Program
     {
@@ -11,7 +12,8 @@ namespace LoopLearn
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Database.Database.Initalize();
+            Application.Run(new Login());
         }
     }
 }
