@@ -40,15 +40,18 @@
             // 
             // tbxUsername
             // 
-            tbxUsername.Location = new Point(512, 244);
+            tbxUsername.AccessibleName = "tbxUsername";
+            tbxUsername.Location = new Point(512, 270);
             tbxUsername.MaxLength = 10;
             tbxUsername.Name = "tbxUsername";
             tbxUsername.Size = new Size(156, 23);
             tbxUsername.TabIndex = 0;
+            tbxUsername.TextChanged += tbxUsername_TextChanged;
             // 
             // tbxPassword
             // 
-            tbxPassword.Location = new Point(512, 299);
+            tbxPassword.AccessibleName = "tbxPassword";
+            tbxPassword.Location = new Point(510, 308);
             tbxPassword.MaxLength = 10;
             tbxPassword.Name = "tbxPassword";
             tbxPassword.Size = new Size(156, 23);
@@ -57,6 +60,8 @@
             // 
             // btnRegister
             // 
+            btnRegister.AccessibleName = "btnRegister";
+            btnRegister.FlatAppearance.BorderSize = 0;
             btnRegister.Location = new Point(593, 350);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(75, 23);
@@ -67,6 +72,8 @@
             // 
             // btnLogin
             // 
+            btnLogin.AccessibleName = "btnLogin";
+            btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.Location = new Point(512, 350);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(75, 23);
@@ -77,9 +84,12 @@
             // 
             // lblLogin
             // 
+            lblLogin.AccessibleName = "lblLogin";
             lblLogin.AutoSize = true;
+            lblLogin.BackColor = Color.Transparent;
             lblLogin.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            lblLogin.Location = new Point(500, 182);
+            lblLogin.ForeColor = Color.White;
+            lblLogin.Location = new Point(500, 208);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(178, 45);
             lblLogin.TabIndex = 4;
@@ -89,9 +99,12 @@
             // 
             // lblUsername
             // 
+            lblUsername.AccessibleName = "lblUsername";
             lblUsername.AutoSize = true;
+            lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Segoe UI", 9F);
-            lblUsername.Location = new Point(432, 252);
+            lblUsername.ForeColor = Color.White;
+            lblUsername.Location = new Point(432, 278);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(74, 15);
             lblUsername.TabIndex = 5;
@@ -100,9 +113,12 @@
             // 
             // lblPassword
             // 
+            lblPassword.AccessibleName = "lblPassword";
             lblPassword.AutoSize = true;
+            lblPassword.BackColor = Color.Transparent;
             lblPassword.Font = new Font("Segoe UI", 9F);
-            lblPassword.Location = new Point(473, 307);
+            lblPassword.ForeColor = Color.White;
+            lblPassword.Location = new Point(471, 316);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(33, 15);
             lblPassword.TabIndex = 6;
@@ -111,21 +127,24 @@
             // 
             // btnForgotPassword
             // 
+            btnForgotPassword.AccessibleName = "btnForgotPassword";
+            btnForgotPassword.BackColor = Color.Transparent;
             btnForgotPassword.Cursor = Cursors.Hand;
             btnForgotPassword.FlatAppearance.BorderSize = 0;
-            btnForgotPassword.FlatStyle = FlatStyle.Flat;
             btnForgotPassword.Font = new Font("Segoe UI", 9F, FontStyle.Underline);
             btnForgotPassword.Location = new Point(512, 379);
             btnForgotPassword.Name = "btnForgotPassword";
             btnForgotPassword.Size = new Size(154, 23);
             btnForgotPassword.TabIndex = 7;
             btnForgotPassword.Text = "Şifremi unuttum";
-            btnForgotPassword.UseVisualStyleBackColor = true;
+            btnForgotPassword.UseVisualStyleBackColor = false;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
+            BackgroundImage = Properties.Resources.LoginPageBackground;
             ClientSize = new Size(1264, 681);
             Controls.Add(btnForgotPassword);
             Controls.Add(lblPassword);
@@ -135,8 +154,9 @@
             Controls.Add(btnRegister);
             Controls.Add(tbxPassword);
             Controls.Add(tbxUsername);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "Login";
-            Text = "Login";
+            Text = "LoopLearn";
             ResumeLayout(false);
             PerformLayout();
         }
