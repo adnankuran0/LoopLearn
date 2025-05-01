@@ -1,21 +1,22 @@
 ﻿using LoopLearn.Backend.Utils;
-
 namespace LoopLearn.Backend.Auth
 {
     public class AuthService
     {
-        public bool Register(string username, string password)
+        public bool Register(string username, string password,int questionID,string securityAnswer)
         {
+            
             if (Database.Database.UserExists(username))
             {
                 return false;
             }
 
             string hashedPassword = PasswordHasher.Hash(password);
+            string hashedSecurityAnswer = PasswordHasher.Hash(securityAnswer+questionID.ToString());
 
             try
             {
-                Database.Database.AddUser(username, hashedPassword);
+                Database.Database.AddUser(username, hashedPassword,hashedSecurityAnswer);
                 return true;
             }
             catch
@@ -29,9 +30,14 @@ namespace LoopLearn.Backend.Auth
             return Database.Database.ValidateUser(username, password);
         }
 
-        public bool UpdatePassword(string username, string newPassword)
+        public bool UpdatePassword(string username, string newPassword, int questionID, string securityAnswer)
         {
-            return Database.Database.UpdateUserPassword(username, newPassword);
+            string hashedSecurityAnswer = PasswordHasher.Hash(securityAnswer + questionID.ToString());
+            if (!Database.Database.VerifySecurityAnswer(username, questionID, hashedSecurityAnswer))
+                return false;
+
+            string newHashedPassword = PasswordHasher.Hash(newPassword);
+            return Database.Database.UpdateUserPassword(username, newHashedPassword);
         }
     }
 }

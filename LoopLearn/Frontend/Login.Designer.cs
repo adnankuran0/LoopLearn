@@ -36,25 +36,27 @@
             lblUsername = new Label();
             lblPassword = new Label();
             btnForgotPassword = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // tbxUsername
             // 
             tbxUsername.AccessibleName = "tbxUsername";
-            tbxUsername.Location = new Point(512, 270);
-            tbxUsername.MaxLength = 10;
+            tbxUsername.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbxUsername.Location = new Point(572, 287);
+            tbxUsername.MaxLength = 12;
             tbxUsername.Name = "tbxUsername";
-            tbxUsername.Size = new Size(156, 23);
+            tbxUsername.Size = new Size(158, 23);
             tbxUsername.TabIndex = 0;
             tbxUsername.TextChanged += tbxUsername_TextChanged;
             // 
             // tbxPassword
             // 
             tbxPassword.AccessibleName = "tbxPassword";
-            tbxPassword.Location = new Point(510, 308);
+            tbxPassword.Location = new Point(572, 316);
             tbxPassword.MaxLength = 10;
             tbxPassword.Name = "tbxPassword";
-            tbxPassword.Size = new Size(156, 23);
+            tbxPassword.Size = new Size(158, 23);
             tbxPassword.TabIndex = 1;
             tbxPassword.UseSystemPasswordChar = true;
             // 
@@ -62,9 +64,9 @@
             // 
             btnRegister.AccessibleName = "btnRegister";
             btnRegister.FlatAppearance.BorderSize = 0;
-            btnRegister.Location = new Point(593, 350);
+            btnRegister.Location = new Point(676, 431);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(75, 23);
+            btnRegister.Size = new Size(54, 23);
             btnRegister.TabIndex = 2;
             btnRegister.Text = "Üye ol";
             btnRegister.UseVisualStyleBackColor = true;
@@ -74,9 +76,9 @@
             // 
             btnLogin.AccessibleName = "btnLogin";
             btnLogin.FlatAppearance.BorderSize = 0;
-            btnLogin.Location = new Point(512, 350);
+            btnLogin.Location = new Point(572, 373);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(75, 23);
+            btnLogin.Size = new Size(160, 23);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "Giriş";
             btnLogin.UseVisualStyleBackColor = true;
@@ -85,11 +87,12 @@
             // lblLogin
             // 
             lblLogin.AccessibleName = "lblLogin";
+            lblLogin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblLogin.AutoSize = true;
             lblLogin.BackColor = Color.Transparent;
             lblLogin.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblLogin.ForeColor = Color.White;
-            lblLogin.Location = new Point(500, 208);
+            lblLogin.Location = new Point(562, 201);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(178, 45);
             lblLogin.TabIndex = 4;
@@ -104,7 +107,7 @@
             lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Segoe UI", 9F);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(432, 278);
+            lblUsername.Location = new Point(492, 290);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(74, 15);
             lblUsername.TabIndex = 5;
@@ -118,7 +121,7 @@
             lblPassword.BackColor = Color.Transparent;
             lblPassword.Font = new Font("Segoe UI", 9F);
             lblPassword.ForeColor = Color.White;
-            lblPassword.Location = new Point(471, 316);
+            lblPassword.Location = new Point(533, 319);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(33, 15);
             lblPassword.TabIndex = 6;
@@ -128,16 +131,29 @@
             // btnForgotPassword
             // 
             btnForgotPassword.AccessibleName = "btnForgotPassword";
-            btnForgotPassword.BackColor = Color.Transparent;
-            btnForgotPassword.Cursor = Cursors.Hand;
+            btnForgotPassword.BackColor = Color.Silver;
+            btnForgotPassword.BackgroundImageLayout = ImageLayout.None;
             btnForgotPassword.FlatAppearance.BorderSize = 0;
+            btnForgotPassword.FlatStyle = FlatStyle.Flat;
             btnForgotPassword.Font = new Font("Segoe UI", 9F, FontStyle.Underline);
-            btnForgotPassword.Location = new Point(512, 379);
+            btnForgotPassword.Location = new Point(572, 402);
             btnForgotPassword.Name = "btnForgotPassword";
-            btnForgotPassword.Size = new Size(154, 23);
+            btnForgotPassword.Size = new Size(160, 23);
             btnForgotPassword.TabIndex = 7;
             btnForgotPassword.Text = "Şifremi unuttum";
             btnForgotPassword.UseVisualStyleBackColor = false;
+            btnForgotPassword.Click += btnForgotPassword_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(572, 435);
+            label1.Name = "label1";
+            label1.Size = new Size(98, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Hesabın yok mu?";
             // 
             // Login
             // 
@@ -146,6 +162,7 @@
             BackColor = Color.WhiteSmoke;
             BackgroundImage = Properties.Resources.LoginPageBackground;
             ClientSize = new Size(1264, 681);
+            Controls.Add(label1);
             Controls.Add(btnForgotPassword);
             Controls.Add(lblPassword);
             Controls.Add(lblUsername);
@@ -155,8 +172,12 @@
             Controls.Add(tbxPassword);
             Controls.Add(tbxUsername);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            MinimizeBox = false;
             Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LoopLearn";
+            TopMost = true;
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -171,5 +192,6 @@
         private Label lblUsername;
         private Label lblPassword;
         private Button btnForgotPassword;
+        private Label label1;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LoopLearn.Backend.Utils;
 using System.Data.SQLite;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LoopLearn.Backend.Database
 {
@@ -16,17 +17,17 @@ namespace LoopLearn.Backend.Database
 
         public static void Initalize()
         {
-
         }
 
-        public static void AddUser(string username, string password)
+        public static void AddUser(string username, string password, string securityAnswer)
         {
             using var conn = GetConnection();
-            string query = "INSERT INTO Users (UserName, Password) VALUES (@u, @p)";
+            string query = "INSERT INTO Users (UserName, Password,SecurityAnswer) VALUES (@u, @p, @s)";
 
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@u", username);
             cmd.Parameters.AddWithValue("@p", password);
+            cmd.Parameters.AddWithValue("@s", securityAnswer);
             cmd.ExecuteNonQuery();
         }
 
@@ -53,20 +54,36 @@ namespace LoopLearn.Backend.Database
             cmd.Parameters.AddWithValue("@p", hashedPassword);
 
             int count = Convert.ToInt32(cmd.ExecuteScalar());
-            return count == 1; 
+            return count == 1;
         }
 
         public static bool UpdateUserPassword(string username, string newPassword)
         {
-            string newHash = PasswordHasher.Hash(newPassword);
+
 
             using var conn = GetConnection();
             string query = "UPDATE Users SET Password = @p WHERE UserName = @u";
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@u", username);
-            cmd.Parameters.AddWithValue("@p", newHash);
+            cmd.Parameters.AddWithValue("@p", newPassword);
 
             return cmd.ExecuteNonQuery() > 0;
+        }
+
+        public static bool VerifySecurityAnswer(string username, int questionID, string inputAnswer)
+        {
+            using var conn = GetConnection();
+            string query = "SELECT SecurityAnswer FROM Users WHERE UserName = @u";
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@u", username);
+
+            var result = cmd.ExecuteScalar();
+            if (result == null)
+                return false;
+
+            string storedHashedAnswer = result.ToString();
+
+            return storedHashedAnswer == inputAnswer;
         }
     }
 }

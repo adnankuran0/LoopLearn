@@ -27,7 +27,7 @@ namespace LoopLearn.Frontend
         {
             if (tbxUsername.Text == "" || tbxPassword.Text == "")
             {
-                MessageBox.Show("Lütfen boş alan bırakmayınız!","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen boş alan bırakmayınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -46,38 +46,29 @@ namespace LoopLearn.Frontend
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            if (tbxUsername.Text == "" || tbxPassword.Text == "")
-            {
-                MessageBox.Show("Lütfen boş alan bırakmayınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (tbxUsername.Text.Length < 3 )
-            {
-                MessageBox.Show("Kullanıcı adı çok kısa!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (tbxPassword.Text.Length < 4)
-            {
-                MessageBox.Show("Şifre çok kısa!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            Register register = new Register();
+            register.FormClosed += (s, args) => this.Close();
+            register.Show();
+            this.Hide();
 
-            var auth = new AuthService();
-            bool result = auth.Register(tbxUsername.Text, tbxPassword.Text);
-
-            if (result)
-            {
-                MessageBox.Show("Kayıt başarılı!");
-            }
-            else
-            {
-                MessageBox.Show("Bu kullanıcı adı zaten kullanılıyor.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void tbxUsername_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnForgotPassword_Click(object sender, EventArgs e)
+        {
+            ForgotPassword forgotPassword = new ForgotPassword();
+            forgotPassword.FormClosed += (s, args) => this.Close();
+            forgotPassword.Show();
+            this.Hide();
         }
     }
 }
