@@ -13,7 +13,7 @@ namespace LoopLearn.Backend
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Database.Database.Initalize();
-            Application.Run(new Login());
+            Application.Run(new MainForm());
         }
     }
 }

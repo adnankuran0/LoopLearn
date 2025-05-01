@@ -11,20 +11,20 @@ using System.Windows.Forms;
 
 namespace LoopLearn.Frontend
 {
-    public partial class Register : Form
+    public partial class RegisterPage : UserControl
     {
-        public Register()
+        private MainForm _mainForm;
+        public RegisterPage(MainForm mainForm)
         {
             InitializeComponent();
             cmbSeqQuestion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSeqQuestion.SelectedIndex = 0;
+            _mainForm = mainForm;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
-            this.Hide();
+            _mainForm.LoadPage(new LoginPage(_mainForm));
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -61,11 +61,6 @@ namespace LoopLearn.Frontend
             {
                 MessageBox.Show("Bu kullanıcı adı zaten kullanılıyor.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void Register_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

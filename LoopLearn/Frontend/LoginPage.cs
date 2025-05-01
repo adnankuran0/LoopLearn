@@ -11,16 +11,14 @@ using System.Windows.Forms;
 
 namespace LoopLearn.Frontend
 {
-    public partial class Login : Form
+    public partial class LoginPage : UserControl
     {
-        public Login()
+        private MainForm _mainForm;
+
+        public LoginPage(MainForm mainForm)
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            _mainForm = mainForm;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -46,29 +44,12 @@ namespace LoopLearn.Frontend
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Register register = new Register();
-            register.FormClosed += (s, args) => this.Close();
-            register.Show();
-            this.Hide();
-
-        }
-
-        private void tbxUsername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
+            _mainForm.LoadPage(new RegisterPage(_mainForm));
         }
 
         private void btnForgotPassword_Click(object sender, EventArgs e)
         {
-            ForgotPassword forgotPassword = new ForgotPassword();
-            forgotPassword.FormClosed += (s, args) => this.Close();
-            forgotPassword.Show();
-            this.Hide();
+            _mainForm.LoadPage(new ForgotPasswordPage(_mainForm));
         }
     }
 }

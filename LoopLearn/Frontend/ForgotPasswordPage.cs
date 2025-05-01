@@ -11,21 +11,20 @@ using System.Windows.Forms;
 
 namespace LoopLearn.Frontend
 {
-    public partial class ForgotPassword : Form
+    public partial class ForgotPasswordPage : UserControl
     {
-        public ForgotPassword()
+        private MainForm _mainForm;
+        public ForgotPasswordPage(MainForm mainForm)
         {
             InitializeComponent();
             cmbSeqQuestion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSeqQuestion.SelectedIndex = 0;
+            _mainForm = mainForm;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.FormClosed += (s, args) => this.Close();
-            login.Show();
-            this.Hide();
+            _mainForm.LoadPage(new LoginPage(_mainForm));
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
@@ -33,7 +32,7 @@ namespace LoopLearn.Frontend
             AuthService auth = new AuthService();
             if (auth.UpdatePassword(tbxUsername.Text, tbxNewPassword.Text, cmbSeqQuestion.SelectedIndex, tbxSeqAnswer.Text))
             {
-                MessageBox.Show("Şifreniz başarıyla değiştirildi.", "Şifre değişikliği" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Şifreniz başarıyla değiştirildi.", "Şifre değişikliği", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
