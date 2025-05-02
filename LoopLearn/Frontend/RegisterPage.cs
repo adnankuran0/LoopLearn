@@ -1,4 +1,5 @@
 ﻿using LoopLearn.Backend.Auth;
+using LoopLearn.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,18 +14,16 @@ namespace LoopLearn.Frontend
 {
     public partial class RegisterPage : UserControl
     {
-        private MainForm _mainForm;
-        public RegisterPage(MainForm mainForm)
+        public RegisterPage()
         {
             InitializeComponent();
             cmbSeqQuestion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSeqQuestion.SelectedIndex = 0;
-            _mainForm = mainForm;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            _mainForm.LoadPage(new LoginPage(_mainForm));
+            PageManager.LoadPage(new LoginPage());
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

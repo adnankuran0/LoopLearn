@@ -1,3 +1,4 @@
+using LoopLearn.Backend.Utils;
 using LoopLearn.Frontend;
 namespace LoopLearn.Backend
 {
@@ -13,7 +14,9 @@ namespace LoopLearn.Backend
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Database.Database.Initalize();
-            Application.Run(new MainForm());
+            MainForm mainForm = new MainForm();
+            PageManager.Initalize(mainForm);
+            Application.Run(mainForm);
         }
     }
 }

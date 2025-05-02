@@ -1,4 +1,5 @@
 ﻿using LoopLearn.Backend.Auth;
+using LoopLearn.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,10 @@ namespace LoopLearn.Frontend
 {
     public partial class LoginPage : UserControl
     {
-        private MainForm _mainForm;
 
-        public LoginPage(MainForm mainForm)
+        public LoginPage()
         {
             InitializeComponent();
-            _mainForm = mainForm;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -44,12 +43,12 @@ namespace LoopLearn.Frontend
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            _mainForm.LoadPage(new RegisterPage(_mainForm));
+            PageManager.LoadPage(new RegisterPage());
         }
 
         private void btnForgotPassword_Click(object sender, EventArgs e)
         {
-            _mainForm.LoadPage(new ForgotPasswordPage(_mainForm));
+            PageManager.LoadPage(new ForgotPasswordPage());
         }
     }
 }

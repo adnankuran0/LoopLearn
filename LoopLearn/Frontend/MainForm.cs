@@ -31,7 +31,7 @@ namespace LoopLearn.Frontend
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            LoadPage(new LoginPage(this));
+            LoadPage(new LoginPage());
         }
     }
 }
