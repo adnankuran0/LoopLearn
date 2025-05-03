@@ -1,6 +1,5 @@
 ﻿using LoopLearn.Backend.Utils;
 using System.Data.SQLite;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LoopLearn.Backend.Database
 {

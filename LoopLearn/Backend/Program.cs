@@ -14,7 +14,7 @@ namespace LoopLearn.Backend
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Database.Database.Initalize();
-            MainForm mainForm = new MainForm();
+            AuthForm mainForm = new AuthForm();
             PageManager.Initalize(mainForm);
             Application.Run(mainForm);
         }

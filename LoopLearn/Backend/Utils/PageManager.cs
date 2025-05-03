@@ -1,28 +1,38 @@
 ﻿using LoopLearn.Frontend;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace LoopLearn.Backend.Utils
 {
     public static class PageManager
     {
-        private static MainForm m_MainForm;
+        private static AuthForm? m_ActiveForm;
 
-        public static void Initalize(MainForm mainForm)
+        public static void Initalize(AuthForm loginForm)
         {
-            m_MainForm = mainForm;
+            m_ActiveForm = loginForm;
         }
 
         public static void LoadPage(UserControl page)
         {
-            if (m_MainForm == null) return;
+            if (m_ActiveForm == null) return;
 
-            m_MainForm.panelMain.Controls.Clear();
+            m_ActiveForm.panelMain.Controls.Clear();
             page.Dock = DockStyle.Fill;
-            m_MainForm.panelMain.Controls.Add(page);
+            m_ActiveForm.panelMain.Controls.Add(page);
+        }
+
+        public static void LoadForm(Form form)
+        {
+            if (m_ActiveForm == null) return;
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            m_ActiveForm.panelMain.Controls.Clear();
+            m_ActiveForm.panelMain.Controls.Add(form);
+            m_ActiveForm.panelMain.Tag = form;
+            form.BringToFront();
+            form.Show();
         }
 
     }
