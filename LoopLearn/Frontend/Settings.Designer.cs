@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class AddWord
+    partial class Settings
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            listBox1 = new ListBox();
             SuspendLayout();
             // 
-            // button1
+            // listBox1
             // 
-            button1.Location = new Point(39, 76);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(916, 579);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(120, 94);
+            listBox1.TabIndex = 0;
             // 
-            // AddWord
+            // Settings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button1);
-            Name = "AddWord";
+            Controls.Add(listBox1);
+            Name = "Settings";
             Size = new Size(1039, 676);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private ListBox listBox1;
     }
 }

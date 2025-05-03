@@ -30,13 +30,13 @@
         {
             label1 = new Label();
             btnForgotPassword = new Button();
-            lblPassword = new Label();
-            lblUsername = new Label();
             lblLogin = new Label();
             btnLogin = new Button();
             btnRegister = new Button();
             tbxPassword = new TextBox();
             tbxUsername = new TextBox();
+            lblPassword = new Label();
+            lblUsername = new Label();
             SuspendLayout();
             // 
             // label1
@@ -65,34 +65,6 @@
             btnForgotPassword.Text = "Şifremi unuttum";
             btnForgotPassword.UseVisualStyleBackColor = false;
             btnForgotPassword.Click += btnForgotPassword_Click;
-            // 
-            // lblPassword
-            // 
-            lblPassword.AccessibleName = "lblPassword";
-            lblPassword.AutoSize = true;
-            lblPassword.BackColor = Color.Transparent;
-            lblPassword.Font = new Font("Segoe UI", 9F);
-            lblPassword.ForeColor = Color.White;
-            lblPassword.Location = new Point(524, 340);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(33, 15);
-            lblPassword.TabIndex = 15;
-            lblPassword.Text = "Şifre:";
-            lblPassword.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblUsername
-            // 
-            lblUsername.AccessibleName = "lblUsername";
-            lblUsername.AutoSize = true;
-            lblUsername.BackColor = Color.Transparent;
-            lblUsername.Font = new Font("Segoe UI", 9F);
-            lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(483, 311);
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(74, 15);
-            lblUsername.TabIndex = 14;
-            lblUsername.Text = "Kullanıcı adı:";
-            lblUsername.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblLogin
             // 
@@ -147,12 +119,39 @@
             // 
             tbxUsername.AccessibleName = "tbxUsername";
             tbxUsername.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tbxUsername.BorderStyle = BorderStyle.FixedSingle;
             tbxUsername.Location = new Point(563, 308);
             tbxUsername.MaxLength = 12;
             tbxUsername.Name = "tbxUsername";
-            tbxUsername.Size = new Size(168, 23);
+            tbxUsername.Size = new Size(160, 23);
             tbxUsername.TabIndex = 9;
+            // 
+            // lblPassword
+            // 
+            lblPassword.AccessibleName = "lblPassword";
+            lblPassword.AutoSize = true;
+            lblPassword.BackColor = Color.Transparent;
+            lblPassword.Font = new Font("Segoe UI", 9F);
+            lblPassword.ForeColor = Color.White;
+            lblPassword.Location = new Point(524, 340);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(33, 15);
+            lblPassword.TabIndex = 15;
+            lblPassword.Text = "Şifre:";
+            lblPassword.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblUsername
+            // 
+            lblUsername.AccessibleName = "lblUsername";
+            lblUsername.AutoSize = true;
+            lblUsername.BackColor = Color.Transparent;
+            lblUsername.Font = new Font("Segoe UI", 9F);
+            lblUsername.ForeColor = Color.White;
+            lblUsername.Location = new Point(483, 311);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(74, 15);
+            lblUsername.TabIndex = 14;
+            lblUsername.Text = "Kullanıcı adı:";
+            lblUsername.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // LoginPage
             // 
@@ -178,12 +177,12 @@
 
         private Label label1;
         private Button btnForgotPassword;
-        private Label lblPassword;
-        private Label lblUsername;
         private Label lblLogin;
         private Button btnLogin;
         private Button btnRegister;
         private TextBox tbxPassword;
         private TextBox tbxUsername;
+        private Label lblPassword;
+        private Label lblUsername;
     }
 }

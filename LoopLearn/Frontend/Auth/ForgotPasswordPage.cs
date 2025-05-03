@@ -20,6 +20,13 @@ namespace LoopLearn.Frontend
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tbxUsername.Text) ||
+                string.IsNullOrWhiteSpace(tbxNewPassword.Text) ||
+                string.IsNullOrWhiteSpace(tbxSeqAnswer.Text))
+            {
+                MessageBox.Show("Lütfen tüm alanları doldurun.", "Eksik Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             AuthService auth = new AuthService();
             if (auth.UpdatePassword(tbxUsername.Text, tbxNewPassword.Text, cmbSeqQuestion.SelectedIndex, tbxSeqAnswer.Text))
             {

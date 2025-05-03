@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthForm));
             panelMain = new Panel();
             SuspendLayout();
             // 
@@ -42,15 +43,16 @@
             panelMain.TabIndex = 0;
             panelMain.Paint += panelMain_Paint;
             // 
-            // MainForm
+            // AuthForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
             Controls.Add(panelMain);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "MainForm";
+            Name = "AuthForm";
             Text = "LoopLearn";
             Load += MainForm_Load;
             ResumeLayout(false);

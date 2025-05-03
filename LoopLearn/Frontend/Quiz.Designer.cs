@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class AddWord
+    partial class Quiz
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,30 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
+            label1 = new Label();
             button1 = new Button();
             SuspendLayout();
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(24, 105);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
+            // 
             // button1
             // 
-            button1.Location = new Point(39, 76);
+            button1.Location = new Point(72, 15);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
+            button1.Size = new Size(75, 71);
+            button1.TabIndex = 1;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
-            // AddWord
+            // Quiz
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(button1);
-            Name = "AddWord";
+            Controls.Add(label1);
+            Name = "Quiz";
             Size = new Size(1039, 676);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
+        private Label label1;
         private Button button1;
     }
 }

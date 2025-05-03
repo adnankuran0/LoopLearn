@@ -13,70 +13,118 @@ namespace LoopLearn.Frontend
     public partial class MainForm : Form
     {
         private UserControl activeContent;
+        private readonly float originalFontSize;
 
         public MainForm()
         {
             InitializeComponent();
+            originalFontSize = btnAddWord.Font.Size;
+        }
+
+        private void ChangeContent(UserControl newContent)
+        {
+            if (activeContent != null)
+            {
+                if (activeContent == newContent) return;
+
+                pnlContent.Controls.Remove(activeContent);
+                activeContent.Dispose();
+            }
+
+            activeContent = newContent;
+            newContent.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(newContent);
         }
 
         private void ResetButtonStyles()
         {
-            btnAddWord.BackColor = Color.DarkBlue;
-            btnQuiz.BackColor = Color.DarkBlue;
-            btnRport.BackColor = Color.DarkBlue;
-            btnPuzzle.BackColor = Color.DarkBlue;
-            btnMemNail.BackColor = Color.DarkBlue;
-            btnSettings.BackColor = Color.DarkBlue;
-            btnExit.BackColor = Color.DarkBlue;
-            btnAddWord.Font = new Font(btnAddWord.Font, FontStyle.Regular);
-            btnQuiz.Font = new Font(btnQuiz.Font, FontStyle.Regular);
-            btnRport.Font = new Font(btnRport.Font, FontStyle.Regular);
-            btnPuzzle.Font = new Font(btnPuzzle.Font, FontStyle.Regular);
-            btnMemNail.Font = new Font(btnMemNail.Font, FontStyle.Regular);
-            btnSettings.Font = new Font(btnSettings.Font, FontStyle.Regular);
-            btnExit.Font = new Font(btnSettings.Font, FontStyle.Regular);
+            ResetButton(btnAddWord);
+            ResetButton(btnQuiz);
+            ResetButton(btnRport);
+            ResetButton(btnPuzzle);
+            ResetButton(btnMemNail);
+            ResetButton(btnSettings);
+            ResetButton(btnExit);
+        }
+
+        private void ResetButton(Button btn)
+        {
+            btn.BackColor = Color.Navy;
+            btn.Font = new Font(btn.Font.FontFamily, originalFontSize, FontStyle.Regular);
         }
 
         private void MakeButtonSelected(Button selectedButton)
         {
             ResetButtonStyles();
-            selectedButton.Font = new Font(selectedButton.Font, FontStyle.Bold);
-            selectedButton.BackColor = Color.Blue;
+
+            float newSize = selectedButton.Font.Size + 2;
+            selectedButton.Font = new Font(selectedButton.Font.FontFamily, newSize, FontStyle.Bold);
+            selectedButton.BackColor = Color.MediumBlue;
         }
 
         private void btnAddWord_Click(object sender, EventArgs e)
         {
             MakeButtonSelected(btnAddWord);
+            ChangeContent(new AddWord());
         }
 
         private void btnQuiz_Click(object sender, EventArgs e)
         {
             MakeButtonSelected(btnQuiz);
+            ChangeContent(new Quiz());
         }
 
         private void btnRport_Click(object sender, EventArgs e)
         {
             MakeButtonSelected(btnRport);
+            ChangeContent(new Report());
+
         }
 
         private void btnPuzzle_Click(object sender, EventArgs e)
         {
             MakeButtonSelected(btnPuzzle);
+            ChangeContent(new Puzzle());
+
         }
 
         private void btnMemNail_Click(object sender, EventArgs e)
         {
             MakeButtonSelected(btnMemNail);
+            ChangeContent(new MemoryNail());
+
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
             MakeButtonSelected(btnSettings);
+            ChangeContent(new Settings());
+
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            ChangeContent(new Home());
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pnlContent_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ChangeContent(new Home());
         }
     }
 }

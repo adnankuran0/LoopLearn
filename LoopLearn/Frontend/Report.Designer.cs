@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class AddWord
+    partial class Report
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,19 +33,19 @@
             // 
             // button1
             // 
-            button1.Location = new Point(39, 76);
+            button1.Location = new Point(5, 130);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
-            // AddWord
+            // Report
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(button1);
-            Name = "AddWord";
+            Name = "Report";
             Size = new Size(1039, 676);
             ResumeLayout(false);
         }

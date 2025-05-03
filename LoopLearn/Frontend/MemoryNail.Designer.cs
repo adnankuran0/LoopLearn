@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class AddWord
+    partial class MemoryNail
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,30 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            checkedListBox1 = new CheckedListBox();
             SuspendLayout();
             // 
-            // button1
+            // checkedListBox1
             // 
-            button1.Location = new Point(39, 76);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            checkedListBox1.FormattingEnabled = true;
+            checkedListBox1.Location = new Point(27, 56);
+            checkedListBox1.Name = "checkedListBox1";
+            checkedListBox1.Size = new Size(120, 94);
+            checkedListBox1.TabIndex = 0;
             // 
-            // AddWord
+            // MemoryNail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button1);
-            Name = "AddWord";
+            Controls.Add(checkedListBox1);
+            Name = "MemoryNail";
             Size = new Size(1039, 676);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private CheckedListBox checkedListBox1;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class AddWord
+    partial class Home
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,30 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
-            // button1
+            // label1
             // 
-            button1.Location = new Point(39, 76);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 70F);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(215, 278);
+            label1.Name = "label1";
+            label1.Size = new Size(592, 125);
+            label1.TabIndex = 0;
+            label1.Text = "Hoş geldiniz!";
             // 
-            // AddWord
+            // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button1);
-            Name = "AddWord";
+            Controls.Add(label1);
+            Name = "Home";
             Size = new Size(1039, 676);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private Label label1;
     }
 }
