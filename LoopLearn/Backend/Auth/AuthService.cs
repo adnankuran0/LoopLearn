@@ -25,9 +25,13 @@ namespace LoopLearn.Backend.Auth
             }
         }
 
-        public bool Login(string username, string password)
+        public UserData Login(string username, string password)
         {
-            return Database.Database.ValidateUser(username, password);
+            if (!Database.Database.ValidateUser(username, password)) return null;
+
+            UserData userData = Database.Database.GetUserData(username);
+
+            return userData;
         }
 
         public bool UpdatePassword(string username, string newPassword, int questionID, string securityAnswer)

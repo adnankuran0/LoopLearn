@@ -1,5 +1,6 @@
 ﻿using LoopLearn.Backend.Utils;
 using System.Data.SQLite;
+using System.Security.Cryptography;
 
 namespace LoopLearn.Backend.Database
 {
@@ -83,6 +84,22 @@ namespace LoopLearn.Backend.Database
             string storedHashedAnswer = result.ToString();
 
             return storedHashedAnswer == inputAnswer;
+        }
+
+        public static UserData GetUserData(string userName)
+        {
+            UserData userData = new UserData();
+            using var conn = GetConnection();
+            string query = "SELECT UserID FROM Users WHERE UserName = @u";
+            using var cmd = new SQLiteCommand(query,conn);
+            cmd.Parameters.AddWithValue("@u",userName);
+            var result = cmd.ExecuteScalar();
+            if (result == null) return null;
+
+            userData.userID = Convert.ToInt32(result);
+            userData.userName = userName;
+            return userData;
+
         }
     }
 }

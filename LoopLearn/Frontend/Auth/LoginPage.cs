@@ -1,4 +1,5 @@
-﻿using LoopLearn.Backend.Auth;
+﻿using LoopLearn.Backend;
+using LoopLearn.Backend.Auth;
 using LoopLearn.Backend.Utils;
 
 
@@ -21,10 +22,12 @@ namespace LoopLearn.Frontend
             }
 
             var auth = new AuthService();
-            bool result = auth.Login(tbxUsername.Text, tbxPassword.Text);
+            UserData result = auth.Login(tbxUsername.Text, tbxPassword.Text);
 
-            if (result)
+            if (result != null)
             {
+                UserSession.UserName = result.userName;
+                UserSession.UserId = result.userID;
                 PageManager.LoadForm(new MainForm());
                 
             }

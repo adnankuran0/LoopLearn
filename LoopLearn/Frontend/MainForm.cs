@@ -109,7 +109,17 @@ namespace LoopLearn.Frontend
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            var result = MessageBox.Show(
+            "Çıkmak istediğinizden emin misiniz?",
+            "Uygulamadan Çık",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void pnlContent_Paint(object sender, PaintEventArgs e)

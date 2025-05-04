@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoopLearn.Backend;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using LoopLearn.Backend.Database;
+using LoopLearn.Backend.Auth;
 namespace LoopLearn.Frontend
 {
     public partial class Home : UserControl
@@ -15,6 +18,15 @@ namespace LoopLearn.Frontend
         public Home()
         {
             InitializeComponent();
+            
+            label1.Text += UserSession.UserName + "!";
+        }
+
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

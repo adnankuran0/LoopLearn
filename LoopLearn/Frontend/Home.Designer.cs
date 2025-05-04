@@ -35,13 +35,15 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 70F);
+            label1.Font = new Font("Segoe UI", 50F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(215, 278);
+            label1.Location = new Point(88, 310);
             label1.Name = "label1";
-            label1.Size = new Size(592, 125);
+            label1.Size = new Size(433, 89);
             label1.TabIndex = 0;
-            label1.Text = "Hoş geldiniz!";
+            label1.Text = "Hoş geldiniz, ";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Click += label1_Click;
             // 
             // Home
             // 
