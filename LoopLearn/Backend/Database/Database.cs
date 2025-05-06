@@ -1,4 +1,5 @@
-﻿using LoopLearn.Backend.Utils;
+﻿using LoopLearn.Backend.Auth;
+using LoopLearn.Backend.Utils;
 using System.Data.SQLite;
 using System.Security.Cryptography;
 
@@ -86,7 +87,7 @@ namespace LoopLearn.Backend.Database
             return storedHashedAnswer == inputAnswer;
         }
 
-        public static UserData GetUserData(string userName)
+        public static UserData? GetUserData(string userName)
         {
             UserData userData = new UserData();
             using var conn = GetConnection();

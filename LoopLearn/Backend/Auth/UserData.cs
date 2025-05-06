@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoopLearn.Backend
+namespace LoopLearn.Backend.Auth
 {
     public class UserData
     {

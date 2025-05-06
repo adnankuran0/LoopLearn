@@ -53,6 +53,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "AuthForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LoopLearn";
             Load += MainForm_Load;
             ResumeLayout(false);
