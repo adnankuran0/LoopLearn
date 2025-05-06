@@ -34,6 +34,7 @@ namespace LoopLearn.Backend.Auth
             return userData;
         }
 
+        //tHİS FUNCTİON UPDATES
         public bool UpdatePassword(string username, string newPassword, int questionID, string securityAnswer)
         {
             string hashedSecurityAnswer = PasswordHasher.Hash(securityAnswer + questionID.ToString());
