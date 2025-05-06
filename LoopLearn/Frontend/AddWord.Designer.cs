@@ -28,30 +28,145 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            tbxEngWordName = new TextBox();
+            tbxTurWordName = new TextBox();
+            tbxSample = new TextBox();
+            lblEngWordName = new Label();
+            lblTurWordName = new Label();
+            lblSample = new Label();
+            btnAddWord = new Button();
+            btnChoosePicture = new Button();
+            btnChooseVoice = new Button();
+            pctSamplePicture = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pctSamplePicture).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // tbxEngWordName
             // 
-            button1.Location = new Point(39, 76);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            tbxEngWordName.Location = new Point(314, 202);
+            tbxEngWordName.Name = "tbxEngWordName";
+            tbxEngWordName.Size = new Size(230, 23);
+            tbxEngWordName.TabIndex = 0;
+            // 
+            // tbxTurWordName
+            // 
+            tbxTurWordName.Location = new Point(314, 255);
+            tbxTurWordName.Name = "tbxTurWordName";
+            tbxTurWordName.Size = new Size(230, 23);
+            tbxTurWordName.TabIndex = 1;
+            // 
+            // tbxSample
+            // 
+            tbxSample.Location = new Point(314, 307);
+            tbxSample.Name = "tbxSample";
+            tbxSample.Size = new Size(230, 23);
+            tbxSample.TabIndex = 2;
+            // 
+            // lblEngWordName
+            // 
+            lblEngWordName.AutoSize = true;
+            lblEngWordName.BackColor = Color.Transparent;
+            lblEngWordName.ForeColor = Color.White;
+            lblEngWordName.Location = new Point(217, 205);
+            lblEngWordName.Name = "lblEngWordName";
+            lblEngWordName.Size = new Size(91, 15);
+            lblEngWordName.TabIndex = 3;
+            lblEngWordName.Text = "İngilizce kelime:";
+            // 
+            // lblTurWordName
+            // 
+            lblTurWordName.AutoSize = true;
+            lblTurWordName.BackColor = Color.Transparent;
+            lblTurWordName.ForeColor = Color.White;
+            lblTurWordName.Location = new Point(198, 258);
+            lblTurWordName.Name = "lblTurWordName";
+            lblTurWordName.Size = new Size(110, 15);
+            lblTurWordName.TabIndex = 4;
+            lblTurWordName.Text = "Kelimenin Türkçesi:";
+            // 
+            // lblSample
+            // 
+            lblSample.AutoSize = true;
+            lblSample.BackColor = Color.Transparent;
+            lblSample.ForeColor = Color.White;
+            lblSample.Location = new Point(226, 310);
+            lblSample.Name = "lblSample";
+            lblSample.Size = new Size(82, 15);
+            lblSample.TabIndex = 5;
+            lblSample.Text = "Cümle örneği:";
+            // 
+            // btnAddWord
+            // 
+            btnAddWord.Location = new Point(314, 412);
+            btnAddWord.Name = "btnAddWord";
+            btnAddWord.Size = new Size(230, 28);
+            btnAddWord.TabIndex = 6;
+            btnAddWord.Text = "Kelime Ekle";
+            btnAddWord.UseVisualStyleBackColor = true;
+            btnAddWord.Click += btnAddWord_Click;
+            // 
+            // btnChoosePicture
+            // 
+            btnChoosePicture.Location = new Point(314, 374);
+            btnChoosePicture.Name = "btnChoosePicture";
+            btnChoosePicture.Size = new Size(99, 23);
+            btnChoosePicture.TabIndex = 7;
+            btnChoosePicture.Text = "Görsel seç";
+            btnChoosePicture.UseVisualStyleBackColor = true;
+            btnChoosePicture.Click += btnChoosePicture_Click;
+            // 
+            // btnChooseVoice
+            // 
+            btnChooseVoice.Location = new Point(445, 374);
+            btnChooseVoice.Name = "btnChooseVoice";
+            btnChooseVoice.Size = new Size(99, 23);
+            btnChooseVoice.TabIndex = 8;
+            btnChooseVoice.Text = "Ses seç (?)";
+            btnChooseVoice.UseVisualStyleBackColor = true;
+            // 
+            // pctSamplePicture
+            // 
+            pctSamplePicture.BackColor = Color.Gray;
+            pctSamplePicture.Location = new Point(588, 202);
+            pctSamplePicture.Name = "pctSamplePicture";
+            pctSamplePicture.Size = new Size(236, 238);
+            pctSamplePicture.SizeMode = PictureBoxSizeMode.Zoom;
+            pctSamplePicture.TabIndex = 9;
+            pctSamplePicture.TabStop = false;
             // 
             // AddWord
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button1);
+            BackgroundImage = Properties.Resources.LoginPageBackground;
+            Controls.Add(pctSamplePicture);
+            Controls.Add(btnChooseVoice);
+            Controls.Add(btnChoosePicture);
+            Controls.Add(btnAddWord);
+            Controls.Add(lblSample);
+            Controls.Add(lblTurWordName);
+            Controls.Add(lblEngWordName);
+            Controls.Add(tbxSample);
+            Controls.Add(tbxTurWordName);
+            Controls.Add(tbxEngWordName);
             Name = "AddWord";
             Size = new Size(1039, 676);
+            ((System.ComponentModel.ISupportInitialize)pctSamplePicture).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private TextBox tbxEngWordName;
+        private TextBox tbxTurWordName;
+        private TextBox tbxSample;
+        private Label lblEngWordName;
+        private Label lblTurWordName;
+        private Label lblSample;
+        private Button btnAddWord;
+        private Button btnChoosePicture;
+        private Button btnChooseVoice;
+        private PictureBox pctSamplePicture;
     }
 }

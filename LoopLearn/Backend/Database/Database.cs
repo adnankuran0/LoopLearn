@@ -102,5 +102,55 @@ namespace LoopLearn.Backend.Database
             return userData;
 
         }
+
+        public static int AddWord(string eng, string tur, string picturePath, string audioPath)
+        {
+            using (var conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                var cmd = new SQLiteCommand("INSERT INTO Words (EngWordName, TurWordName, Picture, Audio) VALUES (@eng, @tur, @pic, @audio); SELECT last_insert_rowid();", conn);
+                cmd.Parameters.AddWithValue("@eng", eng);
+                cmd.Parameters.AddWithValue("@tur", tur);
+                cmd.Parameters.AddWithValue("@pic", picturePath);
+                cmd.Parameters.AddWithValue("@audio", audioPath);
+
+                var result = cmd.ExecuteScalar();
+                return Convert.ToInt32(result);
+            }
+        }
+
+        public static void AddWordSample(int wordId, string sample)
+        {
+            using (var conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                var cmd = new SQLiteCommand("INSERT INTO WordSamples (WordID, Samples) VALUES (@id, @sample);", conn);
+                cmd.Parameters.AddWithValue("@id", wordId);
+                cmd.Parameters.AddWithValue("@sample", sample);
+                cmd.ExecuteNonQuery();
+            }
+        }  
+        public static void AddWordAudio(int wordId, string audioPath)
+        {
+            using (var conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                var cmd = new SQLiteCommand("INSERT INTO WordAudio (WordID, AudioPath) VALUES (@id, @audio);", conn);
+                cmd.Parameters.AddWithValue("@id", wordId);
+                cmd.Parameters.AddWithValue("@audio", audioPath);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static bool WordExists(string engWord)
+        {
+            using var conn = GetConnection();
+            string query = "SELECT COUNT(*) FROM Words WHERE EngWordName = @eng";
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@eng", engWord);
+
+            long count = (long)cmd.ExecuteScalar();
+            return count > 0;
+        }
     }
 }
