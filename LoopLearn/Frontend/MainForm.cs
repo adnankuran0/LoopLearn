@@ -25,7 +25,8 @@ namespace LoopLearn.Frontend
         {
             if (activeContent != null)
             {
-                if (activeContent == newContent) return;
+                if (activeContent.Tag != null && newContent.Tag != null && activeContent.Tag.Equals(newContent.Tag))
+                    return;
 
                 pnlContent.Controls.Remove(activeContent);
                 activeContent.Dispose();

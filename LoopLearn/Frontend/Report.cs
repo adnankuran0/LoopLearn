@@ -15,6 +15,7 @@ namespace LoopLearn.Frontend
         public Report()
         {
             InitializeComponent();
+            Tag = "Report";
         }
     }
 }

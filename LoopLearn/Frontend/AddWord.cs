@@ -9,11 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Web;
+using LoopLearn.Backend.Auth;
 
 namespace LoopLearn.Frontend
 {
     public partial class AddWord : UserControl
     {
+        private void ClearFields()
+        {
+            tbxEngWordName.Text = string.Empty;
+            tbxTurWordName.Text = string.Empty;
+            tbxSample.Text = string.Empty;
+            pctSamplePicture.Image = null;
+        }
+
         private string FixWord(string kelime)
         {
             if (string.IsNullOrWhiteSpace(kelime))
@@ -30,6 +39,7 @@ namespace LoopLearn.Frontend
         public AddWord()
         {
             InitializeComponent();
+            Tag = "AddWord";
         }
 
         private void btnChoosePicture_Click(object sender, EventArgs e)
@@ -87,16 +97,27 @@ namespace LoopLearn.Frontend
 
         private void btnAddWord_Click(object sender, EventArgs e)
         {
-            if (tbxEngWordName.Text == "" || tbxTurWordName.Text == "" || tbxSample.Text == "" || picturePath == "") return;
-            if (Database.WordExists(FixWord(tbxEngWordName.Text))) return;
+            if (tbxEngWordName.Text == "" || tbxTurWordName.Text == "" || tbxSample.Text == "" || picturePath == "")
+            {
+                MessageBox.Show("Lütfen boş alan bırakmayınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (Database.WordExists(FixWord(tbxEngWordName.Text)))
+            {
+                MessageBox.Show("Bu kelime zaten mevcut!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearFields();
+                return;
+            }
 
-            int wordID = Database.AddWord(FixWord(tbxEngWordName.Text), FixWord(tbxTurWordName.Text), picturePath, audioPath);
+            int wordID = Database.AddWord(UserSession.UserId,FixWord(tbxEngWordName.Text), FixWord(tbxTurWordName.Text), picturePath, audioPath);
             Database.AddWordSample(wordID, tbxSample.Text);
 
             if (!string.IsNullOrEmpty(audioPath))
             {
                 Database.AddWordAudio(wordID, audioPath);
             }
+            MessageBox.Show("Kelime başarıyla eklendi!");
+            ClearFields();
         }
     }
 }
