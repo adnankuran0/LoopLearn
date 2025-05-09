@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             btnStartQuiz = new Button();
-            btnNextQuestion = new Button();
             lblQuestion = new Label();
             pctPicture = new PictureBox();
             btnA = new Button();
@@ -49,17 +48,6 @@
             btnStartQuiz.UseVisualStyleBackColor = true;
             btnStartQuiz.Click += btnStartQuiz_Click;
             // 
-            // btnNextQuestion
-            // 
-            btnNextQuestion.Location = new Point(398, 502);
-            btnNextQuestion.Name = "btnNextQuestion";
-            btnNextQuestion.Size = new Size(227, 23);
-            btnNextQuestion.TabIndex = 1;
-            btnNextQuestion.Text = "Sonraki Soru";
-            btnNextQuestion.UseVisualStyleBackColor = true;
-            btnNextQuestion.Visible = false;
-            btnNextQuestion.Click += btnNextQuestion_Click;
-            // 
             // lblQuestion
             // 
             lblQuestion.AutoEllipsis = true;
@@ -70,7 +58,7 @@
             lblQuestion.Name = "lblQuestion";
             lblQuestion.Size = new Size(227, 84);
             lblQuestion.TabIndex = 2;
-            lblQuestion.Text = "BURASI SORU OLAYI";
+            lblQuestion.Text = "SORU";
             lblQuestion.TextAlign = ContentAlignment.MiddleCenter;
             lblQuestion.Visible = false;
             // 
@@ -84,7 +72,6 @@
             pctPicture.TabIndex = 5;
             pctPicture.TabStop = false;
             pctPicture.Visible = false;
-            pctPicture.Click += pctPicture_Click;
             // 
             // btnA
             // 
@@ -141,7 +128,6 @@
             Controls.Add(btnA);
             Controls.Add(pctPicture);
             Controls.Add(lblQuestion);
-            Controls.Add(btnNextQuestion);
             Controls.Add(btnStartQuiz);
             Name = "Quiz";
             Size = new Size(1039, 676);
@@ -152,7 +138,6 @@
         #endregion
 
         private Button btnStartQuiz;
-        private Button btnNextQuestion;
         private Label lblQuestion;
         private PictureBox pctPicture;
         private Button btnA;

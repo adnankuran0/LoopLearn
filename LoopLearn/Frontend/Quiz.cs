@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using LoopLearn.Backend.Database;
 using LoopLearn.Backend.ExamManager;
 using LoopLearn.Backend.Quiz;
@@ -16,153 +8,172 @@ namespace LoopLearn.Frontend
 {
     public partial class Quiz : UserControl
     {
-        public bool IsQuizActive;
-        private Question CurrentQuestion;
+        private bool isQuizActive;
+        private Question currentQuestion;
         private Exam exam;
-        private void LoadQuestionToInterface(Question question)
-        {
-            if (question == null) return;
+        private readonly Random random = new Random();
 
-            LoadImageToPictureBox(question.CorrectWord.picturePath);
+        public Quiz()
+        {
+            InitializeComponent();
+            Tag = "Quiz";
+            isQuizActive = false;
+            btnStartQuiz.Visible = true;
+        }
+
+        private void btnStartQuiz_Click(object sender, EventArgs e)
+        {
+            if (!ConfirmQuizStart()) return;
+
+            isQuizActive = true;
+            btnStartQuiz.Visible = false;
+            exam = ExamManager.CreateExam(10);
+            ShowQuestionUI();
+            LoadNextQuestion();
+        }
+
+        private bool ConfirmQuizStart()
+        {
+            var result = MessageBox.Show(
+                "Sınavı başlatmak istediğinizden emin misiniz?",
+                "Sınavı başlat",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            return result == DialogResult.Yes;
+        }
+
+        private void btnAnswer_Click(object sender, EventArgs e)
+        {
+            if (!(sender is Button clickedButton)) return;
+
+            bool isCorrect = clickedButton.Text.Equals(
+                currentQuestion.CorrectWord.engWordName,
+                StringComparison.OrdinalIgnoreCase);
+
+            Database.UpdateQuestionAfterAnswer(currentQuestion.questionID, isCorrect);
+            ShowAnswerFeedback(isCorrect);
+
+            LoadNextQuestion();
+        }
+
+        private void ShowAnswerFeedback(bool isCorrect)
+        {
+            string message = isCorrect ? "Tebrikler! Doğru cevap." : "Maalesef yanlış cevap.";
+            MessageBoxIcon icon = isCorrect ? MessageBoxIcon.Information : MessageBoxIcon.Error;
+            MessageBox.Show(message, "Bilgi", MessageBoxButtons.OK, icon);
+        }
+
+        private void LoadNextQuestion()
+        {
+            currentQuestion = exam.GetNextQuestion();
+
+            if (currentQuestion != null)
+            {
+                DisplayQuestion(currentQuestion);
+            }
+            else
+            {
+                EndQuiz();
+            }
+        }
+
+        private void DisplayQuestion(Question question)
+        {
+            LoadQuestionImage(question.CorrectWord.picturePath);
             string questionText = Database.GetSampleByWordID(question.CorrectWord.wordID);
             lblQuestion.Text = ReplaceWordWithEllipsis(questionText, question.CorrectWord.engWordName);
 
-            CurrentQuestion = question;
+            List<string> answers = GetShuffledAnswers(question);
+            ConfigureAnswerButtons(answers);
+        }
 
-            List<string> answers = new List<string>
+        private List<string> GetShuffledAnswers(Question question)
+        {
+            var answers = new List<string>
             {
                 question.CorrectWord.engWordName,
                 question.WrongWord1.engWordName,
                 question.WrongWord2.engWordName,
                 question.WrongWord3.engWordName
             };
+            return answers.OrderBy(_ => random.Next()).ToList();
+        }
 
-            Random rnd = new Random();
-            answers = answers.OrderBy(x => rnd.Next()).ToList();
-
+        private void ConfigureAnswerButtons(List<string> answers)
+        {
             btnA.Text = answers[0];
             btnB.Text = answers[1];
             btnC.Text = answers[2];
             btnD.Text = answers[3];
         }
 
-        private void LoadImageToPictureBox(string relativePath)
+        private void LoadQuestionImage(string relativePath)
         {
-            string solutionFolder = Directory.GetParent(Application.StartupPath).Parent.Parent.Parent.FullName;
-
-            string fullImagePath = Path.Combine(solutionFolder, relativePath);
-
-            if (File.Exists(fullImagePath))
+            try
             {
-                pctPicture.Image = Image.FromFile(fullImagePath);
+                string fullImagePath = GetFullImagePath(relativePath);
+                if (File.Exists(fullImagePath))
+                {
+                    pctPicture.Image?.Dispose(); // Dispose previous image to prevent memory leaks
+                    pctPicture.Image = Image.FromFile(fullImagePath);
+                }
+                else
+                {
+                    ShowError("Görsel bulunamadı!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Görsel bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError($"Görsel yüklenirken hata oluştu: {ex.Message}");
             }
         }
 
-        private void SetQuestionVisible()
+        private string GetFullImagePath(string relativePath)
         {
-            btnNextQuestion.Visible = true;
-            lblQuestion.Visible = true;
-            pctPicture.Visible = true;
-            btnA.Visible = true;
-            btnB.Visible = true;
-            btnC.Visible = true;
-            btnD.Visible = true;
+            string solutionFolder = Directory.GetParent(Application.StartupPath)?.Parent?.Parent?.Parent?.FullName;
+            return Path.Combine(solutionFolder ?? string.Empty, relativePath);
         }
 
-        private void SetQuestionUnvisible()
+        private void ShowError(string message)
         {
-            btnNextQuestion.Visible = false;
-            lblQuestion.Visible = false;
-            pctPicture.Visible = false;
-            btnA.Visible = false;
-            btnB.Visible = false;
-            btnC.Visible = false;
-            btnD.Visible = false;
+            MessageBox.Show(message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public Quiz()
+        private void ShowQuestionUI()
         {
-            InitializeComponent();
-            Tag = "Quiz";
-            IsQuizActive = false;
-            btnStartQuiz.Visible = true;
+            SetControlsVisibility(true);
         }
 
-        private void btnStartQuiz_Click(object sender, EventArgs e)
+        private void HideQuestionUI()
         {
-            var result = MessageBox.Show(
-            "Sınavı başlatmak istediğinizden emin misiniz?",
-            "Sınavı başlat",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-            );
-            if (result == DialogResult.No) return;
-
-            IsQuizActive = true;
-            btnStartQuiz.Visible = false;
-            exam = ExamManager.CreateExam(10);
-
-            SetQuestionVisible();
-            LoadNextQuestion();
+            SetControlsVisibility(false);
         }
 
-        private void btnNextQuestion_Click(object sender, EventArgs e)
+        private void SetControlsVisibility(bool isVisible)
         {
-
-            
+            lblQuestion.Visible = isVisible;
+            pctPicture.Visible = isVisible;
+            btnA.Visible = isVisible;
+            btnB.Visible = isVisible;
+            btnC.Visible = isVisible;
+            btnD.Visible = isVisible;
         }
 
-        private void LoadNextQuestion()
+        private void EndQuiz()
         {
-            Question? q = exam.GetNextQuestion();
-            CurrentQuestion = q;
-
-            if (q != null)
-            {
-                LoadQuestionToInterface(q);
-            }
-            else
-            {
-                SetQuestionUnvisible();
-                IsQuizActive = false;
-                MessageBox.Show("Tüm soruları tamamladınız!");
-            }
+            HideQuestionUI();
+            isQuizActive = false;
+            MessageBox.Show("Tüm soruları tamamladınız!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private string ReplaceWordWithEllipsis(string text, string wordToReplace)
         {
+            if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(wordToReplace))
+                return text;
+
             string pattern = Regex.Escape(wordToReplace);
-            string modifiedText = Regex.Replace(text, pattern, "...", RegexOptions.IgnoreCase);
-
-            return modifiedText;
-        }
-        private void btnAnswer_Click(object sender, EventArgs e)
-        {
-            Button? clickedButton = sender as Button;
-            if (clickedButton == null) return;
-
-            if (clickedButton.Text.Equals(CurrentQuestion.CorrectWord.engWordName, StringComparison.OrdinalIgnoreCase))
-            {
-
-                Database.UpdateQuestionAfterAnswer(CurrentQuestion.questionID, true);
-                MessageBox.Show("Tebrikler! Doğru cevap.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                Database.UpdateQuestionAfterAnswer(CurrentQuestion.questionID, false);
-                MessageBox.Show("Maalesef yanlış cevap.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            LoadNextQuestion();
+            return Regex.Replace(text, pattern, "...", RegexOptions.IgnoreCase);
         }
 
-        private void pctPicture_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

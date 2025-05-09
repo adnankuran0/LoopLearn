@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LoopLearn.Frontend
@@ -19,16 +13,34 @@ namespace LoopLearn.Frontend
         {
             InitializeComponent();
             originalFontSize = btnAddWord.Font.Size;
+            RegisterEvents();
+        }
+
+        private void RegisterEvents()
+        {
+            btnAddWord.Click += (_, _) => NavigateTo(btnAddWord, new AddWord());
+            btnQuiz.Click += (_, _) => NavigateTo(btnQuiz, new Quiz());
+            btnRport.Click += (_, _) => NavigateTo(btnRport, new Report());
+            btnPuzzle.Click += (_, _) => NavigateTo(btnPuzzle, new Puzzle());
+            btnMemNail.Click += (_, _) => NavigateTo(btnMemNail, new MemoryNail());
+            btnSettings.Click += (_, _) => NavigateTo(btnSettings, new Settings());
+            btnExit.Click += (_, _) => ConfirmAndExit();
+            lblHome.Click += (_, _) => ChangeContent(new Home());
+        }
+
+        private void NavigateTo(Button button, UserControl content)
+        {
+            HighlightSelectedButton(button);
+            ChangeContent(content);
         }
 
         private void ChangeContent(UserControl newContent)
         {
+            if (IsSameContent(newContent))
+                return;
 
             if (activeContent != null)
             {
-                if (activeContent.Tag != null && newContent.Tag != null && activeContent.Tag.Equals(newContent.Tag))
-                    return;
-
                 pnlContent.Controls.Remove(activeContent);
                 activeContent.Dispose();
             }
@@ -38,100 +50,46 @@ namespace LoopLearn.Frontend
             pnlContent.Controls.Add(newContent);
         }
 
-        private void ResetButtonStyles()
+        private bool IsSameContent(UserControl newContent)
         {
-            ResetButton(btnAddWord);
-            ResetButton(btnQuiz);
-            ResetButton(btnRport);
-            ResetButton(btnPuzzle);
-            ResetButton(btnMemNail);
-            ResetButton(btnSettings);
-            ResetButton(btnExit);
+            return activeContent?.Tag != null &&
+                   newContent?.Tag != null &&
+                   activeContent.Tag.Equals(newContent.Tag);
         }
 
-        private void ResetButton(Button btn)
+        private void HighlightSelectedButton(Button selectedButton)
         {
-            btn.BackColor = Color.Navy;
-            btn.Font = new Font(btn.Font.FontFamily, originalFontSize, FontStyle.Regular);
-        }
+            ResetAllButtons();
 
-        private void MakeButtonSelected(Button selectedButton)
-        {
-            ResetButtonStyles();
-
-            float newSize = selectedButton.Font.Size + 2;
-            selectedButton.Font = new Font(selectedButton.Font.FontFamily, newSize, FontStyle.Bold);
+            selectedButton.Font = new Font(selectedButton.Font.FontFamily, originalFontSize + 2, FontStyle.Bold);
             selectedButton.BackColor = Color.MediumBlue;
         }
 
-        private void btnAddWord_Click(object sender, EventArgs e)
+        private void ResetAllButtons()
         {
-            MakeButtonSelected(btnAddWord);
-            ChangeContent(new AddWord());
-        }
+            Button[] buttons = {
+                btnAddWord, btnQuiz, btnRport,
+                btnPuzzle, btnMemNail, btnSettings, btnExit
+            };
 
-        private void btnQuiz_Click(object sender, EventArgs e)
-        {
-            MakeButtonSelected(btnQuiz);
-            ChangeContent(new Quiz());
-        }
-
-        private void btnRport_Click(object sender, EventArgs e)
-        {
-            MakeButtonSelected(btnRport);
-            ChangeContent(new Report());
-
-        }
-
-        private void btnPuzzle_Click(object sender, EventArgs e)
-        {
-            MakeButtonSelected(btnPuzzle);
-            ChangeContent(new Puzzle());
-
-        }
-
-        private void btnMemNail_Click(object sender, EventArgs e)
-        {
-            MakeButtonSelected(btnMemNail);
-            ChangeContent(new MemoryNail());
-
-        }
-
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-            MakeButtonSelected(btnSettings);
-            ChangeContent(new Settings());
-
-        }
-
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            ChangeContent(new Home());
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-            "Çıkmak istediğinizden emin misiniz?",
-            "Uygulamadan Çık",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-            );
-
-            if (result == DialogResult.Yes)
+            foreach (var btn in buttons)
             {
-                Application.Exit();
+                btn.BackColor = Color.Navy;
+                btn.Font = new Font(btn.Font.FontFamily, originalFontSize, FontStyle.Regular);
             }
         }
 
-        private void pnlContent_Paint(object sender, PaintEventArgs e)
+        private void ConfirmAndExit()
         {
+            var result = MessageBox.Show(
+                "Çıkmak istediğinizden emin misiniz?",
+                "Uygulamadan Çık",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void MainForm_Load(object sender, EventArgs e)

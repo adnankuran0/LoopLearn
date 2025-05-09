@@ -37,7 +37,7 @@
             btnQuiz = new Button();
             btnAddWord = new Button();
             panel2 = new Panel();
-            lblLogin = new Label();
+            lblHome = new Label();
             pnlContent = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -77,7 +77,6 @@
             btnExit.TabIndex = 7;
             btnExit.Text = "Çıkış";
             btnExit.UseVisualStyleBackColor = true;
-            btnExit.Click += btnExit_Click;
             // 
             // btnSettings
             // 
@@ -96,7 +95,6 @@
             btnSettings.TabIndex = 6;
             btnSettings.Text = "Ayarlar";
             btnSettings.UseVisualStyleBackColor = true;
-            btnSettings.Click += btnSettings_Click;
             // 
             // btnMemNail
             // 
@@ -115,7 +113,6 @@
             btnMemNail.TabIndex = 5;
             btnMemNail.Text = "Hafıza Çivisi";
             btnMemNail.UseVisualStyleBackColor = true;
-            btnMemNail.Click += btnMemNail_Click;
             // 
             // btnPuzzle
             // 
@@ -134,7 +131,6 @@
             btnPuzzle.TabIndex = 4;
             btnPuzzle.Text = "Puzzle";
             btnPuzzle.UseVisualStyleBackColor = true;
-            btnPuzzle.Click += btnPuzzle_Click;
             // 
             // btnRport
             // 
@@ -153,7 +149,6 @@
             btnRport.TabIndex = 3;
             btnRport.Text = "Rapor";
             btnRport.UseVisualStyleBackColor = true;
-            btnRport.Click += btnRport_Click;
             // 
             // btnQuiz
             // 
@@ -172,7 +167,6 @@
             btnQuiz.TabIndex = 2;
             btnQuiz.Text = "Sınav";
             btnQuiz.UseVisualStyleBackColor = true;
-            btnQuiz.Click += btnQuiz_Click;
             // 
             // btnAddWord
             // 
@@ -191,34 +185,31 @@
             btnAddWord.TabIndex = 1;
             btnAddWord.Text = "Kelime Ekle";
             btnAddWord.UseVisualStyleBackColor = true;
-            btnAddWord.Click += btnAddWord_Click;
             // 
             // panel2
             // 
-            panel2.Controls.Add(lblLogin);
+            panel2.Controls.Add(lblHome);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(223, 121);
             panel2.TabIndex = 0;
-            panel2.Paint += panel2_Paint;
             // 
-            // lblLogin
+            // lblHome
             // 
-            lblLogin.AccessibleName = "lblLogin";
-            lblLogin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblLogin.AutoSize = true;
-            lblLogin.BackColor = Color.Transparent;
-            lblLogin.Cursor = Cursors.Hand;
-            lblLogin.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            lblLogin.ForeColor = Color.White;
-            lblLogin.Location = new Point(23, 40);
-            lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(178, 45);
-            lblLogin.TabIndex = 14;
-            lblLogin.Text = "LoopLearn";
-            lblLogin.TextAlign = ContentAlignment.MiddleCenter;
-            lblLogin.Click += btnHome_Click;
+            lblHome.AccessibleName = "lblLogin";
+            lblHome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblHome.AutoSize = true;
+            lblHome.BackColor = Color.Transparent;
+            lblHome.Cursor = Cursors.Hand;
+            lblHome.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblHome.ForeColor = Color.White;
+            lblHome.Location = new Point(23, 40);
+            lblHome.Name = "lblHome";
+            lblHome.Size = new Size(178, 45);
+            lblHome.TabIndex = 14;
+            lblHome.Text = "LoopLearn";
+            lblHome.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlContent
             // 
@@ -228,7 +219,6 @@
             pnlContent.Name = "pnlContent";
             pnlContent.Size = new Size(1044, 681);
             pnlContent.TabIndex = 1;
-            pnlContent.Paint += pnlContent_Paint;
             // 
             // MainForm
             // 
@@ -262,6 +252,6 @@
         private Button btnQuiz;
         private Button btnExit;
         private Panel pnlContent;
-        private Label lblLogin;
+        private Label lblHome;
     }
 }

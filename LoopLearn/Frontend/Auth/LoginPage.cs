@@ -1,12 +1,10 @@
 ﻿using LoopLearn.Backend.Auth;
 using LoopLearn.Backend.Utils;
 
-
 namespace LoopLearn.Frontend
 {
     public partial class LoginPage : UserControl
     {
-
         public LoginPage()
         {
             InitializeComponent();

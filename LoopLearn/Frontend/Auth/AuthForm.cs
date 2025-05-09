@@ -15,12 +15,6 @@ namespace LoopLearn.Frontend
             page.Dock = DockStyle.Fill;
             panelMain.Controls.Add(page);
         }
-
-        private void panelMain_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadPage(new LoginPage());

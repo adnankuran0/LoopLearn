@@ -41,7 +41,6 @@
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(1280, 720);
             panelMain.TabIndex = 0;
-            panelMain.Paint += panelMain_Paint;
             // 
             // AuthForm
             // 
