@@ -109,7 +109,7 @@ namespace LoopLearn.Frontend
                 return;
             }
 
-            int wordID = Database.AddWord(UserSession.UserId,FixWord(tbxEngWordName.Text), FixWord(tbxTurWordName.Text), picturePath, audioPath);
+            int wordID = Database.AddWord(UserSession.UserId, FixWord(tbxEngWordName.Text), FixWord(tbxTurWordName.Text), picturePath, audioPath);
             Database.AddWordSample(wordID, tbxSample.Text);
 
             if (!string.IsNullOrEmpty(audioPath))
@@ -118,6 +118,34 @@ namespace LoopLearn.Frontend
             }
             MessageBox.Show("Kelime başarıyla eklendi!");
             ClearFields();
+        }
+
+        private void pctSamplePicture_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Bir görsel dosyası seç";
+            dialog.Filter = "Görseller|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedPath = dialog.FileName;
+
+                string solutionFolder = Directory.GetParent(Application.StartupPath).Parent.Parent.Parent.FullName;
+                string picturesFolder = Path.Combine(solutionFolder, "Backend", "Database", "Pictures");
+
+                if (!Directory.Exists(picturesFolder))
+                    Directory.CreateDirectory(picturesFolder);
+
+                string newFileName = Path.GetFileName(selectedPath);
+                string destinationPath = Path.Combine(picturesFolder, newFileName);
+
+                File.Copy(selectedPath, destinationPath, true);
+
+                picturePath = Path.Combine("Backend", "Database", "Pictures", newFileName);
+
+                Image img = Image.FromFile(destinationPath);
+                pctSamplePicture.Image = img;
+            }
         }
     }
 }

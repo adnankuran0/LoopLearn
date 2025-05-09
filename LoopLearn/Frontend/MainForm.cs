@@ -23,6 +23,7 @@ namespace LoopLearn.Frontend
 
         private void ChangeContent(UserControl newContent)
         {
+
             if (activeContent != null)
             {
                 if (activeContent.Tag != null && newContent.Tag != null && activeContent.Tag.Equals(newContent.Tag))

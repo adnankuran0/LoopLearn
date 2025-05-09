@@ -257,7 +257,7 @@ namespace LoopLearn.Backend.Database
 
             while (word == null && attempts < 10)
             {
-                word = GetRandomWord(excludeIDs); 
+                word = GetRandomWord(excludeIDs);
 
                 if (word != null && !excludeIDs.Contains(word.wordID))
                 {
@@ -280,7 +280,7 @@ namespace LoopLearn.Backend.Database
             string query = @"SELECT QuestionID, UserID, WordID, CorrectCount, LastAnsweredDate, NextReviewDate
                      FROM Questions
                      WHERE QuestionID = @qid";
-            
+
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@qid", questionID);
 
@@ -311,6 +311,7 @@ namespace LoopLearn.Backend.Database
 
             return new Question(qID)
             {
+                questionID = qID,
                 userID = userID,
                 CorrectWord = correctWord,
                 WrongWord1 = wrong1,
@@ -334,5 +335,133 @@ namespace LoopLearn.Backend.Database
 
             return result?.ToString() ?? string.Empty;
         }
+
+        public static List<int> GetQuestionIDsByUser(int userID)
+        {
+            List<int> questionIDs = new List<int>();
+
+            using var conn = GetConnection();
+            string query = "SELECT QuestionID FROM Questions WHERE UserID = @uid";
+
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@uid", userID);
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                questionIDs.Add(reader.GetInt32(0));
+            }
+
+            return questionIDs;
+        }
+
+        public static List<int> GetNewQuestionIDs(int userID, int count)
+        {
+            using var conn = GetConnection();
+            using var cmd = new SQLiteCommand(
+                "SELECT QuestionID FROM Questions WHERE UserID = @uid AND LastAnsweredDate IS NULL LIMIT @cnt", conn);
+            cmd.Parameters.AddWithValue("@uid", userID);
+            cmd.Parameters.AddWithValue("@cnt", count);
+            using var reader = cmd.ExecuteReader();
+            var ids = new List<int>();
+            while (reader.Read())
+                ids.Add(reader.GetInt32(0));
+            return ids;
+        }
+
+        public static List<int> GetDueQuestionIDs(int userID)
+        {
+            using var conn = GetConnection();
+            using var cmd = new SQLiteCommand(
+                "SELECT QuestionID FROM Questions WHERE UserID = @uid AND NextReviewDate <= @now", conn);
+            cmd.Parameters.AddWithValue("@uid", userID);
+            cmd.Parameters.AddWithValue("@now", DateTime.Now);
+            using var reader = cmd.ExecuteReader();
+            var ids = new List<int>();
+            while (reader.Read())
+                ids.Add(reader.GetInt32(0));
+            return ids;
+        }
+
+        public static void UpdateQuestionAfterAnswer(int questionID, bool isCorrect)
+        {
+            using var conn = GetConnection();
+            string query = "SELECT UserID, WordID, CorrectCount FROM Questions WHERE QuestionID = @qid";
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@qid", questionID);
+            using var reader = cmd.ExecuteReader();
+
+            if (!reader.Read())
+                return; 
+
+            int userID = reader.GetInt32(0);
+            int wordID = reader.GetInt32(1);
+            int correctCount = reader.GetInt32(2);
+
+            if (correctCount >= 6)
+                return;
+
+            DateTime now = DateTime.Now;
+            DateTime? nextReviewDate;
+            DateTime? lastAnsweredDate;
+
+            if (isCorrect)
+            {
+                correctCount++;
+                lastAnsweredDate = now;
+                nextReviewDate = CalculateNextReviewDate(correctCount, now);
+
+                if (correctCount == 6)
+                    AddKnownWord(userID, wordID, now);
+            }
+            else
+            {
+                correctCount = 0;
+                lastAnsweredDate = null;
+                nextReviewDate = now.AddDays(1);
+            }
+
+            string updateQuery = @"
+        UPDATE Questions 
+        SET CorrectCount = @correctCount, 
+            LastAnsweredDate = @lastAnsweredDate, 
+            NextReviewDate = @nextReviewDate 
+        WHERE QuestionID = @qid";
+            using var updateCmd = new SQLiteCommand(updateQuery, conn);
+            updateCmd.Parameters.AddWithValue("@correctCount", correctCount);
+            updateCmd.Parameters.AddWithValue("@lastAnsweredDate",
+                lastAnsweredDate.HasValue ? (object)lastAnsweredDate.Value : DBNull.Value);
+            updateCmd.Parameters.AddWithValue("@nextReviewDate", nextReviewDate);
+            updateCmd.Parameters.AddWithValue("@qid", questionID);
+            updateCmd.ExecuteNonQuery();
+        }
+
+        private static DateTime CalculateNextReviewDate(int correctCount, DateTime currentDate)
+        {
+            return correctCount switch
+            {
+                1 => currentDate.AddDays(1),
+                2 => currentDate.AddDays(7),
+                3 => currentDate.AddDays(30),
+                4 => currentDate.AddDays(90),
+                5 => currentDate.AddDays(180),
+                6 => currentDate.AddDays(365),
+                _ => currentDate.AddDays(1),
+            };
+        }
+
+        public static void AddKnownWord(int userID, int wordID, DateTime knownDate)
+        {
+            using var conn = GetConnection();
+            string insert = @"
+        INSERT OR IGNORE INTO KnownWords (UserID, WordID, KnownDate)
+        VALUES (@uid, @wid, @kdate)";
+            using var cmd = new SQLiteCommand(insert, conn);
+            cmd.Parameters.AddWithValue("@uid", userID);
+            cmd.Parameters.AddWithValue("@wid", wordID);
+            cmd.Parameters.AddWithValue("@kdate", knownDate);
+            cmd.ExecuteNonQuery();
+        }
     }
 }
+

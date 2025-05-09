@@ -133,6 +133,7 @@
             pctSamplePicture.SizeMode = PictureBoxSizeMode.Zoom;
             pctSamplePicture.TabIndex = 9;
             pctSamplePicture.TabStop = false;
+            pctSamplePicture.Click += pctSamplePicture_Click;
             // 
             // AddWord
             // 

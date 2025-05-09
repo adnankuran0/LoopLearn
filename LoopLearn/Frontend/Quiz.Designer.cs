@@ -84,6 +84,7 @@
             pctPicture.TabIndex = 5;
             pctPicture.TabStop = false;
             pctPicture.Visible = false;
+            pctPicture.Click += pctPicture_Click;
             // 
             // btnA
             // 
@@ -94,6 +95,7 @@
             btnA.Text = "A)";
             btnA.UseVisualStyleBackColor = true;
             btnA.Visible = false;
+            btnA.Click += btnAnswer_Click;
             // 
             // btnB
             // 
@@ -104,6 +106,7 @@
             btnB.Text = "B)";
             btnB.UseVisualStyleBackColor = true;
             btnB.Visible = false;
+            btnB.Click += btnAnswer_Click;
             // 
             // btnC
             // 
@@ -114,6 +117,7 @@
             btnC.Text = "C)";
             btnC.UseVisualStyleBackColor = true;
             btnC.Visible = false;
+            btnC.Click += btnAnswer_Click;
             // 
             // btnD
             // 
@@ -124,6 +128,7 @@
             btnD.Text = "D)";
             btnD.UseVisualStyleBackColor = true;
             btnD.Visible = false;
+            btnD.Click += btnAnswer_Click;
             // 
             // Quiz
             // 
