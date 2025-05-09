@@ -13,7 +13,7 @@ namespace LoopLearn.Backend
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Database.Database.Initalize();
+            Database.DatabaseManager.Initalize();
             AuthForm mainForm = new AuthForm();
             PageManager.Initalize(mainForm);
             Application.Run(mainForm);

@@ -8,11 +8,6 @@ namespace LoopLearn.Backend.Quiz
 {
     public class Question
     {
-        public Question(int questionID) 
-        {
-
-        }
-
         public int questionID {  get; set; }
         public int userID { get; set; }
         public Word CorrectWord { get; set; }

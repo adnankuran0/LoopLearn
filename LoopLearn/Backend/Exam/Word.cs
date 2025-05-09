@@ -20,7 +20,6 @@ namespace LoopLearn.Backend.Quiz
 
         public int wordID { get; set; }
         public int userID { get; set; }
-
         public string engWordName { get; set; }
         public string turWordName { get; set; }
         public string picturePath { get; set; }

@@ -1,14 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LoopLearn.Backend.Database;
 
 namespace LoopLearn.Backend.Auth
 {
-    public static class UserSession
+    public class UserSession
     {
-        public static int UserId { get; set; }
-        public static string UserName { get; set; }
+        private static UserSession? instance;
+
+        public static UserSession Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new UserSession();
+
+                return instance;
+            }
+        }
+
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+
+        public void SetUserData(string userName)
+        {
+            UserData? userData = DatabaseManager.GetUserData(userName);
+            UserId = userData.userID;
+            UserName = userData.userName;   
+        }
+
+        public bool IsActive => UserId != 0 && !string.IsNullOrEmpty(UserName);
     }
 }

@@ -50,7 +50,7 @@ namespace LoopLearn.Frontend
                 currentQuestion.CorrectWord.engWordName,
                 StringComparison.OrdinalIgnoreCase);
 
-            Database.UpdateQuestionAfterAnswer(currentQuestion.questionID, isCorrect);
+            DatabaseManager.UpdateQuestionAfterAnswer(currentQuestion.questionID, isCorrect);
             ShowAnswerFeedback(isCorrect);
 
             LoadNextQuestion();
@@ -80,7 +80,7 @@ namespace LoopLearn.Frontend
         private void DisplayQuestion(Question question)
         {
             LoadQuestionImage(question.CorrectWord.picturePath);
-            string questionText = Database.GetSampleByWordID(question.CorrectWord.wordID);
+            string questionText = DatabaseManager.GetSampleByWordID(question.CorrectWord.wordID);
             lblQuestion.Text = ReplaceWordWithEllipsis(questionText, question.CorrectWord.engWordName);
 
             List<string> answers = GetShuffledAnswers(question);

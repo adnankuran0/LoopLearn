@@ -1,6 +1,4 @@
-﻿
-
-namespace LoopLearn.Frontend
+﻿namespace LoopLearn.Frontend
 {
     public partial class AuthForm : Form
     {

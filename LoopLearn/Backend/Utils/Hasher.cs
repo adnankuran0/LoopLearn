@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LoopLearn.Backend.Utils
 {
-    public static class PasswordHasher
+    public static class Hasher
     {
         public static string Hash(string password)
         {

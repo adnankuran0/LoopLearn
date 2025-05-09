@@ -19,7 +19,7 @@ namespace LoopLearn.Frontend
         {
             InitializeComponent();
             Tag = "Home";
-            label1.Text += UserSession.UserName + "!";
+            label1.Text += UserSession.Instance.UserName + "!";
         }
 
 

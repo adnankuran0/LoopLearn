@@ -7,7 +7,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LoopLearn.Backend.Database
 {
-    public static class Database
+    public static class DatabaseManager
     {
         private static string connectionString = "Data Source=../../../Backend/Database/LoopLearnDB.db;Version=3;";
 
@@ -23,7 +23,7 @@ namespace LoopLearn.Backend.Database
 
         }
 
-        public static void AddUser(string username, string password, string securityAnswer)
+        public static bool AddUser(string username, string password, string securityAnswer)
         {
             using var conn = GetConnection();
             string query = "INSERT INTO Users (UserName, Password,SecurityAnswer) VALUES (@u, @p, @s)";
@@ -32,7 +32,15 @@ namespace LoopLearn.Backend.Database
             cmd.Parameters.AddWithValue("@u", username);
             cmd.Parameters.AddWithValue("@p", password);
             cmd.Parameters.AddWithValue("@s", securityAnswer);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static bool UserExists(string username)
@@ -47,10 +55,8 @@ namespace LoopLearn.Backend.Database
             return count > 0;
         }
 
-        public static bool ValidateUser(string username, string password)
+        public static bool ValidateUser(string username, string hashedPassword)
         {
-            string hashedPassword = PasswordHasher.Hash(password);
-
             using var conn = GetConnection();
             string query = @"SELECT COUNT(*) FROM Users WHERE UserName = @u AND Password = @p";
             using var cmd = new SQLiteCommand(query, conn);
@@ -63,8 +69,6 @@ namespace LoopLearn.Backend.Database
 
         public static bool UpdateUserPassword(string username, string newPassword)
         {
-
-
             using var conn = GetConnection();
             string query = "UPDATE Users SET Password = @p WHERE UserName = @u";
             using var cmd = new SQLiteCommand(query, conn);
@@ -120,7 +124,7 @@ namespace LoopLearn.Backend.Database
 
 
                 var wordID = Convert.ToInt32(cmd.ExecuteScalar());
-                AddQuestion(UserSession.UserId, wordID);
+                AddQuestion(UserSession.Instance.UserId, wordID);
                 return wordID;
             }
         }
@@ -309,7 +313,7 @@ namespace LoopLearn.Backend.Database
 
             Word wrong3 = GetUniqueRandomWord(usedIDs);
 
-            return new Question(qID)
+            return new Question()
             {
                 questionID = qID,
                 userID = userID,

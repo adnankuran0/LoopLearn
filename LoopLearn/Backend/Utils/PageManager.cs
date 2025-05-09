@@ -6,31 +6,31 @@ namespace LoopLearn.Backend.Utils
 {
     public static class PageManager
     {
-        private static AuthForm? m_ActiveForm;
+        private static AuthForm? entryForm;
 
-        public static void Initalize(AuthForm loginForm)
+        public static void Initalize(AuthForm EntryForm)
         {
-            m_ActiveForm = loginForm;
+            entryForm = EntryForm;
         }
 
         public static void LoadPage(UserControl page)
         {
-            if (m_ActiveForm == null) return;
+            if (entryForm == null) return;
 
-            m_ActiveForm.panelMain.Controls.Clear();
+            entryForm.panelMain.Controls.Clear();
             page.Dock = DockStyle.Fill;
-            m_ActiveForm.panelMain.Controls.Add(page);
+            entryForm.panelMain.Controls.Add(page);
         }
 
         public static void LoadForm(Form form)
         {
-            if (m_ActiveForm == null) return;
+            if (entryForm == null) return;
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            m_ActiveForm.panelMain.Controls.Clear();
-            m_ActiveForm.panelMain.Controls.Add(form);
-            m_ActiveForm.panelMain.Tag = form;
+            entryForm.panelMain.Controls.Clear();
+            entryForm.panelMain.Controls.Add(form);
+            entryForm.panelMain.Tag = form;
             form.BringToFront();
             form.Show();
         }

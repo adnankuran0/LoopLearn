@@ -1,7 +1,6 @@
 ﻿using LoopLearn.Backend.Auth;
 using LoopLearn.Backend.Utils;
 
-
 namespace LoopLearn.Frontend
 {
     public partial class ForgotPasswordPage : UserControl
@@ -18,17 +17,28 @@ namespace LoopLearn.Frontend
             PageManager.LoadPage(new LoginPage());
         }
 
-        private void btnChangePassword_Click(object sender, EventArgs e)
+        private bool AreInputsValid()
         {
             if (string.IsNullOrWhiteSpace(tbxUsername.Text) ||
                 string.IsNullOrWhiteSpace(tbxNewPassword.Text) ||
                 string.IsNullOrWhiteSpace(tbxSeqAnswer.Text))
             {
                 MessageBox.Show("Lütfen tüm alanları doldurun.", "Eksik Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
-            AuthService auth = new AuthService();
-            if (auth.UpdatePassword(tbxUsername.Text, tbxNewPassword.Text, cmbSeqQuestion.SelectedIndex, tbxSeqAnswer.Text))
+
+            return true;
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            if(!AreInputsValid()) return;
+
+            if (AuthManager.Instance.UpdatePassword(
+                tbxUsername.Text,
+                tbxNewPassword.Text,
+                cmbSeqQuestion.SelectedIndex,
+                tbxSeqAnswer.Text))
             {
                 MessageBox.Show("Şifreniz başarıyla değiştirildi.", "Şifre değişikliği", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

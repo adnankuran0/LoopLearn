@@ -1,7 +1,6 @@
 ﻿using LoopLearn.Backend.Auth;
 using LoopLearn.Backend.Utils;
 
-
 namespace LoopLearn.Frontend
 {
     public partial class RegisterPage : UserControl
@@ -12,39 +11,58 @@ namespace LoopLearn.Frontend
             cmbSeqQuestion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSeqQuestion.SelectedIndex = 0;
         }
+        private void ShowWarning(string message)
+        {
+            MessageBox.Show(message, "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             PageManager.LoadPage(new LoginPage());
         }
+        private bool AreInputsValid()
+        {
+            if (string.IsNullOrWhiteSpace(tbxUsername.Text) ||
+                string.IsNullOrWhiteSpace(tbxPassword.Text) ||
+                string.IsNullOrWhiteSpace(tbxPasswordAgain.Text) ||
+                string.IsNullOrWhiteSpace(tbxSeqAnswer.Text))
+            {
+                ShowWarning("Lütfen boş alan bırakmayınız!");
+                return false;
+            }
+
+            if (tbxUsername.Text.Length < 3)
+            {
+                ShowWarning("Kullanıcı adı çok kısa!");
+                return false;
+            }
+
+            if (tbxPassword.Text.Length < 4)
+            {
+                ShowWarning("Şifre çok kısa!");
+                return false;
+            }
+
+            if (tbxPassword.Text != tbxPasswordAgain.Text)
+            {
+                ShowWarning("Şifreler aynı değil!");
+                return false;
+            }
+
+            return true;
+        }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            if (tbxUsername.Text == "" || tbxPassword.Text == "" || tbxPasswordAgain.Text == "" || tbxSeqAnswer.Text == "")
-            {
-                MessageBox.Show("Lütfen boş alan bırakmayınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (tbxUsername.Text.Length < 3)
-            {
-                MessageBox.Show("Kullanıcı adı çok kısa!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (tbxPassword.Text.Length < 4)
-            {
-                MessageBox.Show("Şifre çok kısa!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (tbxPassword.Text != tbxPasswordAgain.Text)
-            {
-                MessageBox.Show("Şifreler aynı değil!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (!AreInputsValid()) return;
 
-            var auth = new AuthService();
-            bool result = auth.Register(tbxUsername.Text, tbxPassword.Text, cmbSeqQuestion.SelectedIndex, tbxSeqAnswer.Text);
+            bool registerResult = AuthManager.Instance.Register(
+                tbxUsername.Text, 
+                tbxPassword.Text, 
+                cmbSeqQuestion.SelectedIndex, 
+                tbxSeqAnswer.Text);
 
-            if (result)
+            if (registerResult)
             {
                 MessageBox.Show("Kayıt başarılı!");
             }

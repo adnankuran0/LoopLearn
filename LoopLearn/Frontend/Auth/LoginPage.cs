@@ -9,24 +9,33 @@ namespace LoopLearn.Frontend
         {
             InitializeComponent();
         }
+        private bool AreInputsValid()
+        {
+            if (string.IsNullOrWhiteSpace(tbxUsername.Text) || string.IsNullOrWhiteSpace(tbxPassword.Text))
+            {
+                MessageBox.Show("Lütfen boş alan bırakmayınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void OnLoginSuccess()
+        {
+            UserSession.Instance.SetUserData(tbxUsername.Text);
+            AuthManager.Instance.Kill();
+            PageManager.LoadForm(new MainForm());
+        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (tbxUsername.Text == "" || tbxPassword.Text == "")
-            {
-                MessageBox.Show("Lütfen boş alan bırakmayınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (!AreInputsValid()) return;
 
-            var auth = new AuthService();
-            UserData result = auth.Login(tbxUsername.Text, tbxPassword.Text);
+            bool loginResult = AuthManager.Instance.Login(tbxUsername.Text, tbxPassword.Text);
 
-            if (result != null)
+            if (loginResult)
             {
-                UserSession.UserName = result.userName;
-                UserSession.UserId = result.userID;
-                PageManager.LoadForm(new MainForm());
-                
+                OnLoginSuccess();
             }
             else
             {

@@ -102,19 +102,19 @@ namespace LoopLearn.Frontend
                 MessageBox.Show("Lütfen boş alan bırakmayınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (Database.WordExists(FixWord(tbxEngWordName.Text)))
+            if (DatabaseManager.WordExists(FixWord(tbxEngWordName.Text)))
             {
                 MessageBox.Show("Bu kelime zaten mevcut!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ClearFields();
                 return;
             }
 
-            int wordID = Database.AddWord(UserSession.UserId, FixWord(tbxEngWordName.Text), FixWord(tbxTurWordName.Text), picturePath, audioPath);
-            Database.AddWordSample(wordID, tbxSample.Text);
+            int wordID = DatabaseManager.AddWord(UserSession.Instance.UserId, FixWord(tbxEngWordName.Text), FixWord(tbxTurWordName.Text), picturePath, audioPath);
+            DatabaseManager.AddWordSample(wordID, tbxSample.Text);
 
             if (!string.IsNullOrEmpty(audioPath))
             {
-                Database.AddWordAudio(wordID, audioPath);
+                DatabaseManager.AddWordAudio(wordID, audioPath);
             }
             MessageBox.Show("Kelime başarıyla eklendi!");
             ClearFields();
