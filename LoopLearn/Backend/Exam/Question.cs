@@ -1,21 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LoopLearn.Backend.Database;
+using System.Text.RegularExpressions;
 
 namespace LoopLearn.Backend.Quiz
 {
     public class Question
     {
-        public int questionID {  get; set; }
+        private readonly Random random = new Random();
+
+        private Word _correctWord;
+        public Word correctWord
+        {
+            get => _correctWord;
+            set
+            {
+                _correctWord = value;
+                if (_correctWord != null)
+                {
+                    string rawSampleSentence = DatabaseManager.GetSampleByWordID(_correctWord.wordID);
+                    sampleSentence = HideAnswerInSentence(rawSampleSentence, _correctWord.engWordName);
+                }
+            }
+        }
+
+        private List<Word> _wrongWords = new List<Word>(3);
+        public List<Word> wrongWords
+        {
+            get => _wrongWords;
+            set
+            {
+                if (value == null || value.Count != 3)
+                    throw new ArgumentException("Exactly 3 wrong words are required.");
+                _wrongWords = value;
+            }
+        }
+
+        public int questionID { get; set; }
         public int userID { get; set; }
-        public Word CorrectWord { get; set; }
-        public Word WrongWord1 { get; set; }
-        public Word WrongWord2 { get; set; }
-        public Word WrongWord3 { get; set; }
         public int correctCount { get; set; }
         public DateTime? answerDate { get; set; }
         public DateTime? nextReviewDate { get; set; }
+
+        public string? sampleSentence;
+
+        public List<string> GetShuffledAnswers()
+        {
+            var answers = new List<string>
+            {
+                correctWord.engWordName,
+                wrongWords[0].engWordName,
+                wrongWords[1].engWordName,
+                wrongWords[2].engWordName
+            };
+
+            return answers.OrderBy(_ => random.Next()).ToList();
+        }
+
+        public bool SubmitAnswer(string answer)
+        {
+            bool isAnswerCorrect = answer.Equals(
+                correctWord.engWordName,
+                StringComparison.OrdinalIgnoreCase);
+
+            DatabaseManager.UpdateQuestionAfterAnswer(questionID, isAnswerCorrect);
+            return isAnswerCorrect;
+        }
+
+        private string HideAnswerInSentence(string text, string wordToReplace)
+        {
+            if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(wordToReplace))
+                return text;
+
+            string pattern = Regex.Escape(wordToReplace);
+            return Regex.Replace(text, pattern, "...", RegexOptions.IgnoreCase);
+        }
     }
 }

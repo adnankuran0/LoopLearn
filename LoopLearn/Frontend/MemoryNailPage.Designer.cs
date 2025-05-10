@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class MemoryNail
+    partial class MemoryNailPage
     {
         /// <summary> 
         /// Required designer variable.

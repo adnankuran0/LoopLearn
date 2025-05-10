@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class Quiz
+    partial class QuizPage
     {
         /// <summary> 
         /// Required designer variable.
@@ -40,12 +40,18 @@
             // 
             // btnStartQuiz
             // 
+            btnStartQuiz.BackColor = Color.Transparent;
+            btnStartQuiz.BackgroundImage = Properties.Resources.LoginPageBackground;
+            btnStartQuiz.BackgroundImageLayout = ImageLayout.Stretch;
+            btnStartQuiz.FlatAppearance.BorderSize = 0;
+            btnStartQuiz.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnStartQuiz.ForeColor = Color.White;
             btnStartQuiz.Location = new Point(398, 310);
             btnStartQuiz.Name = "btnStartQuiz";
             btnStartQuiz.Size = new Size(227, 81);
             btnStartQuiz.TabIndex = 0;
-            btnStartQuiz.Text = "Sınavı başlat";
-            btnStartQuiz.UseVisualStyleBackColor = true;
+            btnStartQuiz.Text = "Sınavı başlat!";
+            btnStartQuiz.UseVisualStyleBackColor = false;
             btnStartQuiz.Click += btnStartQuiz_Click;
             // 
             // lblQuestion
@@ -54,9 +60,9 @@
             lblQuestion.BackColor = Color.Transparent;
             lblQuestion.Font = new Font("Segoe UI", 15F);
             lblQuestion.ForeColor = Color.White;
-            lblQuestion.Location = new Point(398, 358);
+            lblQuestion.Location = new Point(398, 369);
             lblQuestion.Name = "lblQuestion";
-            lblQuestion.Size = new Size(227, 84);
+            lblQuestion.Size = new Size(227, 73);
             lblQuestion.TabIndex = 2;
             lblQuestion.Text = "SORU";
             lblQuestion.TextAlign = ContentAlignment.MiddleCenter;
@@ -77,7 +83,7 @@
             // 
             btnA.Location = new Point(398, 445);
             btnA.Name = "btnA";
-            btnA.Size = new Size(106, 23);
+            btnA.Size = new Size(109, 23);
             btnA.TabIndex = 6;
             btnA.Text = "A)";
             btnA.UseVisualStyleBackColor = true;
@@ -99,7 +105,7 @@
             // 
             btnC.Location = new Point(398, 474);
             btnC.Name = "btnC";
-            btnC.Size = new Size(106, 23);
+            btnC.Size = new Size(109, 23);
             btnC.TabIndex = 8;
             btnC.Text = "C)";
             btnC.UseVisualStyleBackColor = true;

@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class Settings
+    partial class SettingsPage
     {
         /// <summary> 
         /// Required designer variable.

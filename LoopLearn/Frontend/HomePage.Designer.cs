@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class Home
+    partial class HomePage
     {
         /// <summary> 
         /// Required designer variable.

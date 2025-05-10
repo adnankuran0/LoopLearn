@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class AddWord
+    partial class AddWordPage
     {
         /// <summary> 
         /// Required designer variable.

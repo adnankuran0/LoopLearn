@@ -1,5 +1,4 @@
-﻿using LoopLearn.Backend.Auth;
-using LoopLearn.Backend.Utils;
+﻿using LoopLearn.Backend.Utils;
 
 namespace LoopLearn.Frontend
 {

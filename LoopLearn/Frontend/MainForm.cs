@@ -18,14 +18,14 @@ namespace LoopLearn.Frontend
 
         private void RegisterEvents()
         {
-            btnAddWord.Click += (_, _) => NavigateTo(btnAddWord, new AddWord());
-            btnQuiz.Click += (_, _) => NavigateTo(btnQuiz, new Quiz());
+            btnAddWord.Click += (_, _) => NavigateTo(btnAddWord, new AddWordPage());
+            btnQuiz.Click += (_, _) => NavigateTo(btnQuiz, new QuizPage());
             btnRport.Click += (_, _) => NavigateTo(btnRport, new Report());
-            btnPuzzle.Click += (_, _) => NavigateTo(btnPuzzle, new Puzzle());
-            btnMemNail.Click += (_, _) => NavigateTo(btnMemNail, new MemoryNail());
-            btnSettings.Click += (_, _) => NavigateTo(btnSettings, new Settings());
+            btnPuzzle.Click += (_, _) => NavigateTo(btnPuzzle, new PuzzlePage());
+            btnMemNail.Click += (_, _) => NavigateTo(btnMemNail, new MemoryNailPage());
+            btnSettings.Click += (_, _) => NavigateTo(btnSettings, new SettingsPage());
             btnExit.Click += (_, _) => ConfirmAndExit();
-            lblHome.Click += (_, _) => ChangeContent(new Home());
+            lblHome.Click += (_, _) => ChangeContent(new HomePage());
         }
 
         private void NavigateTo(Button button, UserControl content)
@@ -94,7 +94,7 @@ namespace LoopLearn.Frontend
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ChangeContent(new Home());
+            ChangeContent(new HomePage());
         }
     }
 }

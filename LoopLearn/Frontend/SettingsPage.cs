@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace LoopLearn.Frontend
 {
-    public partial class MemoryNail : UserControl
+    public partial class SettingsPage : UserControl
     {
-        public MemoryNail()
+        public SettingsPage()
         {
             InitializeComponent();
-            Tag = "MemoryNail";
+            Tag = "Settings";
         }
     }
 }

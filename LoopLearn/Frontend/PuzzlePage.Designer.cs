@@ -1,6 +1,6 @@
 ﻿namespace LoopLearn.Frontend
 {
-    partial class Puzzle
+    partial class PuzzlePage
     {
         /// <summary> 
         /// Required designer variable.

@@ -305,22 +305,22 @@ namespace LoopLearn.Backend.Database
 
             HashSet<int> usedIDs = new HashSet<int> { correctWordID };
 
-            Word wrong1 = GetUniqueRandomWord(usedIDs);
-            usedIDs.Add(wrong1.wordID);
+            var wrongWords = new List<Word>
+            {
+                GetUniqueRandomWord(usedIDs),
+                GetUniqueRandomWord(usedIDs),
+                GetUniqueRandomWord(usedIDs)
+            };
 
-            Word wrong2 = GetUniqueRandomWord(usedIDs);
-            usedIDs.Add(wrong2.wordID);
+            foreach (var w in wrongWords)
+                usedIDs.Add(w.wordID);
 
-            Word wrong3 = GetUniqueRandomWord(usedIDs);
-
-            return new Question()
+            return new Question
             {
                 questionID = qID,
                 userID = userID,
-                CorrectWord = correctWord,
-                WrongWord1 = wrong1,
-                WrongWord2 = wrong2,
-                WrongWord3 = wrong3,
+                correctWord = correctWord,
+                wrongWords = wrongWords,
                 correctCount = correctCount,
                 answerDate = answerDate,
                 nextReviewDate = nextReviewDate

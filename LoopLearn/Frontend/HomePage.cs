@@ -13,9 +13,9 @@ using LoopLearn.Backend.Database;
 using LoopLearn.Backend.Auth;
 namespace LoopLearn.Frontend
 {
-    public partial class Home : UserControl
+    public partial class HomePage : UserControl
     {
-        public Home()
+        public HomePage()
         {
             InitializeComponent();
             Tag = "Home";

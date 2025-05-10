@@ -1,19 +1,15 @@
-﻿using System.Data;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using LoopLearn.Backend.Database;
-using LoopLearn.Backend.ExamManager;
 using LoopLearn.Backend.Quiz;
 
 namespace LoopLearn.Frontend
 {
-    public partial class Quiz : UserControl
+    public partial class QuizPage : UserControl
     {
-        private bool isQuizActive;
-        private Question currentQuestion;
         private Exam exam;
-        private readonly Random random = new Random();
+        bool isQuizActive;
 
-        public Quiz()
+        public QuizPage()
         {
             InitializeComponent();
             Tag = "Quiz";
@@ -27,7 +23,7 @@ namespace LoopLearn.Frontend
 
             isQuizActive = true;
             btnStartQuiz.Visible = false;
-            exam = ExamManager.CreateExam(10);
+            exam = new Exam(10);
             ShowQuestionUI();
             LoadNextQuestion();
         }
@@ -46,12 +42,8 @@ namespace LoopLearn.Frontend
         {
             if (!(sender is Button clickedButton)) return;
 
-            bool isCorrect = clickedButton.Text.Equals(
-                currentQuestion.CorrectWord.engWordName,
-                StringComparison.OrdinalIgnoreCase);
-
-            DatabaseManager.UpdateQuestionAfterAnswer(currentQuestion.questionID, isCorrect);
-            ShowAnswerFeedback(isCorrect);
+            bool isAnswerCorrect = exam.currentQuestion.SubmitAnswer(clickedButton.Text);
+            ShowAnswerFeedback(isAnswerCorrect);
 
             LoadNextQuestion();
         }
@@ -65,11 +57,11 @@ namespace LoopLearn.Frontend
 
         private void LoadNextQuestion()
         {
-            currentQuestion = exam.GetNextQuestion();
+            exam.currentQuestion = exam.GetNextQuestion();
 
-            if (currentQuestion != null)
+            if (exam.currentQuestion != null)
             {
-                DisplayQuestion(currentQuestion);
+                DisplayQuestion(exam.currentQuestion);
             }
             else
             {
@@ -79,25 +71,15 @@ namespace LoopLearn.Frontend
 
         private void DisplayQuestion(Question question)
         {
-            LoadQuestionImage(question.CorrectWord.picturePath);
-            string questionText = DatabaseManager.GetSampleByWordID(question.CorrectWord.wordID);
-            lblQuestion.Text = ReplaceWordWithEllipsis(questionText, question.CorrectWord.engWordName);
+            LoadQuestionImage(question.correctWord.picturePath);
+            string questionText = DatabaseManager.GetSampleByWordID(question.correctWord.wordID);
+            lblQuestion.Text = exam.currentQuestion.sampleSentence;
 
-            List<string> answers = GetShuffledAnswers(question);
+            List<string> answers = exam.currentQuestion.GetShuffledAnswers();
             ConfigureAnswerButtons(answers);
         }
 
-        private List<string> GetShuffledAnswers(Question question)
-        {
-            var answers = new List<string>
-            {
-                question.CorrectWord.engWordName,
-                question.WrongWord1.engWordName,
-                question.WrongWord2.engWordName,
-                question.WrongWord3.engWordName
-            };
-            return answers.OrderBy(_ => random.Next()).ToList();
-        }
+        
 
         private void ConfigureAnswerButtons(List<string> answers)
         {
@@ -166,14 +148,7 @@ namespace LoopLearn.Frontend
             MessageBox.Show("Tüm soruları tamamladınız!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private string ReplaceWordWithEllipsis(string text, string wordToReplace)
-        {
-            if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(wordToReplace))
-                return text;
-
-            string pattern = Regex.Escape(wordToReplace);
-            return Regex.Replace(text, pattern, "...", RegexOptions.IgnoreCase);
-        }
+        
 
     }
 }

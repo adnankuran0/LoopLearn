@@ -1,7 +1,6 @@
-﻿using LoopLearn.Backend.Utils;
-using LoopLearn.Backend.Database;
+﻿using LoopLearn.Backend.Database;
 
-namespace LoopLearn.Backend.Auth
+namespace LoopLearn.Backend.Utils
 {
     public class AuthManager
     {
