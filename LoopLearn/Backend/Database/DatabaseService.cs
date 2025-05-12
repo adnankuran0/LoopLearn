@@ -1,8 +1,4 @@
-﻿using LoopLearn.Backend.Auth;
-using LoopLearn.Backend.Quiz;
-using LoopLearn.Backend.Utils;
-using System.Data;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 
 namespace LoopLearn.Backend.Database
 {
@@ -25,7 +21,7 @@ namespace LoopLearn.Backend.Database
 
     public class DatabaseService
     {
-        private static SqliteConnectionProvider? connectionProvider;
+        private SqliteConnectionProvider? connectionProvider;
         public UserRepository userRepository;
         public WordRepository wordRepository;
         public QuestionRepository questionRepository;
@@ -49,10 +45,6 @@ namespace LoopLearn.Backend.Database
             userRepository = new UserRepository(connectionProvider);
             wordRepository = new WordRepository(connectionProvider);
             questionRepository = new QuestionRepository(connectionProvider);
-        }
-
-        private DatabaseService()
-        {
         }
 
         public SQLiteConnection GetConnection()

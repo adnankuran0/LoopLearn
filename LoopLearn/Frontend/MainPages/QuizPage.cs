@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using LoopLearn.Backend.Database;
+﻿using LoopLearn.Backend.Database;
 using LoopLearn.Backend.Quiz;
 
 namespace LoopLearn.Frontend
