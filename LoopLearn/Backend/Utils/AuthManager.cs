@@ -24,29 +24,29 @@ namespace LoopLearn.Backend.Utils
 
         public bool Register(string username, string password, int seqQuestionID, string securityAnswer)
         {
-            if (DatabaseManager.UserExists(username))
+            if (DatabaseService.Instance.userRepository.UserExists(username))
                 return false;
 
             string hashedPassword = Hasher.Hash(password);
             string hashedSecurityAnswer = Hasher.Hash(securityAnswer + seqQuestionID.ToString());
 
-            return DatabaseManager.AddUser(username, hashedPassword, hashedSecurityAnswer);
+            return DatabaseService.Instance.userRepository.AddUser(username, hashedPassword, hashedSecurityAnswer);
         }
 
         public bool Login(string username, string password)
         {
             string hashedPassword = Hasher.Hash(password);
-            return DatabaseManager.ValidateUser(username, hashedPassword);
+            return DatabaseService.Instance.userRepository.ValidateUser(username, hashedPassword);
         }
 
         public bool UpdatePassword(string username, string newPassword, int seqQuestionID, string securityAnswer)
         {
             string hashedSecurityAnswer = Hasher.Hash(securityAnswer + seqQuestionID.ToString());
-            if (!DatabaseManager.VerifySecurityAnswer(username, seqQuestionID, hashedSecurityAnswer))
+            if (!DatabaseService.Instance.userRepository.VerifySecurityAnswer(username, seqQuestionID, hashedSecurityAnswer))
                 return false;
 
             string newHashedPassword = Hasher.Hash(newPassword);
-            return DatabaseManager.UpdateUserPassword(username, newHashedPassword);
+            return DatabaseService.Instance.userRepository.UpdateUserPassword(username, newHashedPassword);
         }
     }
 }

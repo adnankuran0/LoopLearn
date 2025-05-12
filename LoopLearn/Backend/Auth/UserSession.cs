@@ -22,7 +22,7 @@ namespace LoopLearn.Backend.Auth
 
         public void SetUserData(string userName)
         {
-            UserData? userData = DatabaseManager.GetUserData(userName);
+            UserData? userData = DatabaseService.Instance.userRepository.GetUserData(userName);
             UserId = userData.userID;
             UserName = userData.userName;   
         }

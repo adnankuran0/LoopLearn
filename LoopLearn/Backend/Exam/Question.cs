@@ -16,7 +16,7 @@ namespace LoopLearn.Backend.Quiz
                 _correctWord = value;
                 if (_correctWord != null)
                 {
-                    string rawSampleSentence = DatabaseManager.GetSampleByWordID(_correctWord.wordID);
+                    string rawSampleSentence = DatabaseService.Instance.questionRepository.GetSampleByWordID(_correctWord.wordID);
                     sampleSentence = HideAnswerInSentence(rawSampleSentence, _correctWord.engWordName);
                 }
             }
@@ -29,7 +29,7 @@ namespace LoopLearn.Backend.Quiz
             set
             {
                 if (value == null || value.Count != 3)
-                    throw new ArgumentException("Exactly 3 wrong words are required.");
+                    throw new ArgumentException("Tam olarak 3 yanlış kelime gereklidir.");
                 _wrongWords = value;
             }
         }
@@ -61,7 +61,7 @@ namespace LoopLearn.Backend.Quiz
                 correctWord.engWordName,
                 StringComparison.OrdinalIgnoreCase);
 
-            DatabaseManager.UpdateQuestionAfterAnswer(questionID, isAnswerCorrect);
+            DatabaseService.Instance.questionRepository.UpdateQuestionAfterAnswer(questionID, isAnswerCorrect);
             return isAnswerCorrect;
         }
 

@@ -28,30 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listBox1 = new ListBox();
             SuspendLayout();
             // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(916, 579);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(120, 94);
-            listBox1.TabIndex = 0;
-            // 
-            // Settings
+            // SettingsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(listBox1);
-            Name = "Settings";
+            BackgroundImage = Properties.Resources.LoginPageBackground;
+            Name = "SettingsPage";
             Size = new Size(1039, 676);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ListBox listBox1;
     }
 }

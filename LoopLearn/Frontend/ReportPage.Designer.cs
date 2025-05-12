@@ -44,6 +44,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.LoginPageBackground;
             Controls.Add(button1);
             Name = "Report";
             Size = new Size(1039, 676);

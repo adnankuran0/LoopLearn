@@ -41,12 +41,13 @@
             checkBox1.Text = "checkBox1";
             checkBox1.UseVisualStyleBackColor = true;
             // 
-            // Puzzle
+            // PuzzlePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.LoginPageBackground;
             Controls.Add(checkBox1);
-            Name = "Puzzle";
+            Name = "PuzzlePage";
             Size = new Size(1039, 676);
             ResumeLayout(false);
             PerformLayout();

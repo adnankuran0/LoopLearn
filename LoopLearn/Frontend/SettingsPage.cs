@@ -17,5 +17,6 @@ namespace LoopLearn.Frontend
             InitializeComponent();
             Tag = "Settings";
         }
+
     }
 }

@@ -17,15 +17,20 @@ namespace LoopLearn.Frontend
             btnStartQuiz.Visible = true;
         }
 
-        private void btnStartQuiz_Click(object sender, EventArgs e)
+        private void StartQuiz(int dailyNewCount)
         {
             if (!ConfirmQuizStart()) return;
 
             isQuizActive = true;
             btnStartQuiz.Visible = false;
-            exam = new Exam(10);
+            exam = new Exam(dailyNewCount);
             ShowQuestionUI();
             LoadNextQuestion();
+        }
+
+        private void btnStartQuiz_Click(object sender, EventArgs e)
+        {
+            StartQuiz(10);
         }
 
         private bool ConfirmQuizStart()
@@ -72,14 +77,12 @@ namespace LoopLearn.Frontend
         private void DisplayQuestion(Question question)
         {
             LoadQuestionImage(question.correctWord.picturePath);
-            string questionText = DatabaseManager.GetSampleByWordID(question.correctWord.wordID);
+            string questionText = DatabaseService.Instance.questionRepository.GetSampleByWordID(question.correctWord.wordID);
             lblQuestion.Text = exam.currentQuestion.sampleSentence;
 
             List<string> answers = exam.currentQuestion.GetShuffledAnswers();
             ConfigureAnswerButtons(answers);
         }
-
-        
 
         private void ConfigureAnswerButtons(List<string> answers)
         {

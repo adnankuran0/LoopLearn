@@ -10,6 +10,7 @@ namespace LoopLearn.Backend.Utils
     {
         public static string CopyFileToBackend(string sourcePath, string folderName)
         {
+
             string solutionFolder = Directory.GetParent(Application.StartupPath).Parent.Parent.Parent.FullName;
             string targetFolder = Path.Combine(solutionFolder, "Backend", "Database", folderName);
 
