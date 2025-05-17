@@ -121,7 +121,7 @@ namespace LoopLearn.Backend.Database
             return ids;
         }
 
-        public  void UpdateQuestionAfterAnswer(int questionID, bool isCorrect)
+        public void UpdateQuestionAfterAnswer(int questionID, bool isCorrect)
         {
             using var conn = GetConnection();
             string query = "SELECT UserID, WordID, CorrectCount, LastAnsweredDate, NextReviewDate FROM Questions WHERE QuestionID = @qid";
@@ -146,11 +146,12 @@ namespace LoopLearn.Backend.Database
             if (isCorrect)
             {
                 correctCount++;
+                if (correctCount == 6)
+                    AddKnownWord(userID, wordID, now);
                 lastAnsweredDate = now;
                 nextReviewDate = CalculateNextReviewDate(correctCount, now);
 
-                if (correctCount == 6)
-                    AddKnownWord(userID, wordID, now);
+
             }
             else
             {
@@ -189,7 +190,7 @@ namespace LoopLearn.Backend.Database
             };
         }
 
-        public  void AddKnownWord(int userID, int wordID, DateTime knownDate)
+        public void AddKnownWord(int userID, int wordID, DateTime knownDate)
         {
             using var conn = GetConnection();
             string insert = @"

@@ -17,6 +17,7 @@ namespace LoopLearn.Backend
 
             string connectionString = "Data Source=../../../Backend/Database/LoopLearnDB.db;Version=3;";
             DatabaseService.Instance.Initialize(connectionString);
+
             AuthForm mainForm = new AuthForm();
             PageManager.Initalize(mainForm);
             Application.Run(mainForm);

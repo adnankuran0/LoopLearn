@@ -10,7 +10,6 @@ namespace LoopLearn.Backend.Database
         public int AddWord(string eng, string tur, string picturePath, string audioPath)
         {
             using var conn = GetConnection();
-            conn.Open();
             var cmd = new SQLiteCommand("INSERT INTO Words (UserID,EngWordName, TurWordName, Picture, Audio) VALUES (@uid, @eng, @tur, @pic, @audio); SELECT last_insert_rowid();", conn);
             cmd.Parameters.AddWithValue("@uid", UserSession.Instance.UserId);
             cmd.Parameters.AddWithValue("@eng", eng);
@@ -34,10 +33,9 @@ namespace LoopLearn.Backend.Database
         private int AddQuestion(int wordID)
         {
             using var conn = GetConnection();
-            conn.Open();
             var cmd = new SQLiteCommand("INSERT INTO Questions (UserID, WordID, CorrectCount, NextReviewDate) " +
                         "VALUES (@userID, @wordID, 0, @reviewDate); SELECT last_insert_rowid();", conn);
-            cmd.Parameters.AddWithValue("@userID", UserSession.Instance.UserName);
+            cmd.Parameters.AddWithValue("@userID", UserSession.Instance.UserId);
             cmd.Parameters.AddWithValue("@wordID", wordID);
             cmd.Parameters.AddWithValue("@reviewDate", DateTime.Now.AddDays(1));
 
@@ -49,7 +47,6 @@ namespace LoopLearn.Backend.Database
         public void AddWordSample(int wordId, string sample)
         {
             using var conn = GetConnection();
-            conn.Open();
             var cmd = new SQLiteCommand("INSERT INTO WordSamples (WordID, Samples) VALUES (@id, @sample);", conn);
             cmd.Parameters.AddWithValue("@id", wordId);
             cmd.Parameters.AddWithValue("@sample", sample);
@@ -58,7 +55,6 @@ namespace LoopLearn.Backend.Database
         public void AddWordAudio(int wordId, string audioPath)
         {
             using var conn = GetConnection();
-            conn.Open();
             var cmd = new SQLiteCommand("INSERT INTO WordAudio (WordID, AudioPath) VALUES (@id, @audio);", conn);
             cmd.Parameters.AddWithValue("@id", wordId);
             cmd.Parameters.AddWithValue("@audio", audioPath);

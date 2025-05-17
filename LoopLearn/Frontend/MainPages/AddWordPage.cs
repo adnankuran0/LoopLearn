@@ -64,6 +64,8 @@ namespace LoopLearn.Frontend
             tbxTurWordName.Text = string.Empty;
             tbxSample.Text = string.Empty;
             pctSamplePicture.Image = null;
+            picturePath = "";
+            audioPath = "";
         }
 
         private void btnChoosePicture_Click(object sender, EventArgs e)
