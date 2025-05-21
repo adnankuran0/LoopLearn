@@ -1,4 +1,6 @@
 ﻿using LoopLearn.Backend.Auth;
+using LoopLearn.Backend.Database;
+using LoopLearn.Backend.Quiz;
 using LoopLearn.Backend.Utils;
 
 namespace LoopLearn.Frontend

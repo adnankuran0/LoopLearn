@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using LoopLearn.Backend.Quiz;
+using System.Data.SQLite;
 
 namespace LoopLearn.Backend.Database
 {
@@ -45,6 +46,8 @@ namespace LoopLearn.Backend.Database
             userRepository = new UserRepository(connectionProvider);
             wordRepository = new WordRepository(connectionProvider);
             questionRepository = new QuestionRepository(connectionProvider);
+
+            
         }
 
         public SQLiteConnection GetConnection()

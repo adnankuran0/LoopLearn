@@ -1,6 +1,7 @@
 ﻿using LoopLearn.Backend.Auth;
 using LoopLearn.Backend.Quiz;
 using System.Data.SQLite;
+using System.Numerics;
 
 namespace LoopLearn.Backend.Database
 {
@@ -157,6 +158,56 @@ namespace LoopLearn.Backend.Database
             }
 
             throw new Exception("Yeterince farklı kelime bulunamadı.");
+        }
+
+        public List<Word> GetKnownWords(int wordCount)
+        {
+            var knownWords = new List<Word>();
+            using var conn = GetConnection();
+
+            var query = "SELECT WordID FROM KnownWords WHERE UserID = @userID LIMIT @limit";
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@userID", UserSession.Instance.UserId);
+            cmd.Parameters.AddWithValue("@limit", wordCount);
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int wordID = reader.GetInt32(0);
+                var word = GetWordByID(wordID);
+                if (word != null)
+                    knownWords.Add(word);
+            }
+            return knownWords;
+        }
+
+        public List<Word> GetKnownWords(int wordCount, int maxWordLength)
+        {
+            var knownWords = new List<Word>();
+            using var conn = GetConnection();
+
+            var query = @"
+        SELECT w.WordID 
+        FROM Words w
+        INNER JOIN KnownWords k ON w.WordID = k.WordID
+        WHERE k.UserID = @userID AND LENGTH(w.EngWordName) <= @maxLen
+        LIMIT @limit
+    ";
+
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@userID", UserSession.Instance.UserId);
+            cmd.Parameters.AddWithValue("@maxLen", maxWordLength);
+            cmd.Parameters.AddWithValue("@limit", wordCount);
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int wordID = reader.GetInt32(0);
+                var word = GetWordByID(wordID);
+                if (word != null)
+                    knownWords.Add(word);
+            }
+            return knownWords;
         }
     }
 }
