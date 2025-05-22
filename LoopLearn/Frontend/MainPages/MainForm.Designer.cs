@@ -56,8 +56,9 @@
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(223, 681);
+            panel1.Size = new Size(255, 673);
             panel1.TabIndex = 0;
             // 
             // btnExit
@@ -70,10 +71,11 @@
             btnExit.ForeColor = Color.White;
             btnExit.Image = Properties.Resources.exit;
             btnExit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExit.Location = new Point(0, 505);
+            btnExit.Location = new Point(0, 671);
+            btnExit.Margin = new Padding(3, 4, 3, 4);
             btnExit.Name = "btnExit";
-            btnExit.Padding = new Padding(15, 0, 0, 0);
-            btnExit.Size = new Size(223, 64);
+            btnExit.Padding = new Padding(17, 0, 0, 0);
+            btnExit.Size = new Size(255, 85);
             btnExit.TabIndex = 7;
             btnExit.Text = "Çıkış";
             btnExit.UseVisualStyleBackColor = true;
@@ -88,10 +90,11 @@
             btnSettings.ForeColor = Color.White;
             btnSettings.Image = Properties.Resources.settings;
             btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettings.Location = new Point(0, 441);
+            btnSettings.Location = new Point(0, 586);
+            btnSettings.Margin = new Padding(3, 4, 3, 4);
             btnSettings.Name = "btnSettings";
-            btnSettings.Padding = new Padding(15, 0, 0, 0);
-            btnSettings.Size = new Size(223, 64);
+            btnSettings.Padding = new Padding(17, 0, 0, 0);
+            btnSettings.Size = new Size(255, 85);
             btnSettings.TabIndex = 6;
             btnSettings.Text = "Ayarlar";
             btnSettings.UseVisualStyleBackColor = true;
@@ -106,10 +109,11 @@
             btnMemNail.ForeColor = Color.White;
             btnMemNail.Image = Properties.Resources.nail;
             btnMemNail.ImageAlign = ContentAlignment.MiddleLeft;
-            btnMemNail.Location = new Point(0, 377);
+            btnMemNail.Location = new Point(0, 501);
+            btnMemNail.Margin = new Padding(3, 4, 3, 4);
             btnMemNail.Name = "btnMemNail";
-            btnMemNail.Padding = new Padding(15, 0, 0, 0);
-            btnMemNail.Size = new Size(223, 64);
+            btnMemNail.Padding = new Padding(17, 0, 0, 0);
+            btnMemNail.Size = new Size(255, 85);
             btnMemNail.TabIndex = 5;
             btnMemNail.Text = "Hafıza Çivisi";
             btnMemNail.UseVisualStyleBackColor = true;
@@ -124,10 +128,11 @@
             btnPuzzle.ForeColor = Color.White;
             btnPuzzle.Image = Properties.Resources.puzzle;
             btnPuzzle.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPuzzle.Location = new Point(0, 313);
+            btnPuzzle.Location = new Point(0, 416);
+            btnPuzzle.Margin = new Padding(3, 4, 3, 4);
             btnPuzzle.Name = "btnPuzzle";
-            btnPuzzle.Padding = new Padding(15, 0, 0, 0);
-            btnPuzzle.Size = new Size(223, 64);
+            btnPuzzle.Padding = new Padding(17, 0, 0, 0);
+            btnPuzzle.Size = new Size(255, 85);
             btnPuzzle.TabIndex = 4;
             btnPuzzle.Text = "Puzzle";
             btnPuzzle.UseVisualStyleBackColor = true;
@@ -142,10 +147,11 @@
             btnRport.ForeColor = Color.White;
             btnRport.Image = Properties.Resources.report;
             btnRport.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRport.Location = new Point(0, 249);
+            btnRport.Location = new Point(0, 331);
+            btnRport.Margin = new Padding(3, 4, 3, 4);
             btnRport.Name = "btnRport";
-            btnRport.Padding = new Padding(15, 0, 0, 0);
-            btnRport.Size = new Size(223, 64);
+            btnRport.Padding = new Padding(17, 0, 0, 0);
+            btnRport.Size = new Size(255, 85);
             btnRport.TabIndex = 3;
             btnRport.Text = "Rapor";
             btnRport.UseVisualStyleBackColor = true;
@@ -160,10 +166,11 @@
             btnQuiz.ForeColor = Color.White;
             btnQuiz.Image = Properties.Resources.exam;
             btnQuiz.ImageAlign = ContentAlignment.MiddleLeft;
-            btnQuiz.Location = new Point(0, 185);
+            btnQuiz.Location = new Point(0, 246);
+            btnQuiz.Margin = new Padding(3, 4, 3, 4);
             btnQuiz.Name = "btnQuiz";
-            btnQuiz.Padding = new Padding(15, 0, 0, 0);
-            btnQuiz.Size = new Size(223, 64);
+            btnQuiz.Padding = new Padding(17, 0, 0, 0);
+            btnQuiz.Size = new Size(255, 85);
             btnQuiz.TabIndex = 2;
             btnQuiz.Text = "Sınav";
             btnQuiz.UseVisualStyleBackColor = true;
@@ -178,10 +185,11 @@
             btnAddWord.ForeColor = Color.White;
             btnAddWord.Image = Properties.Resources.word;
             btnAddWord.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddWord.Location = new Point(0, 121);
+            btnAddWord.Location = new Point(0, 161);
+            btnAddWord.Margin = new Padding(3, 4, 3, 4);
             btnAddWord.Name = "btnAddWord";
-            btnAddWord.Padding = new Padding(15, 0, 0, 0);
-            btnAddWord.Size = new Size(223, 64);
+            btnAddWord.Padding = new Padding(17, 0, 0, 0);
+            btnAddWord.Size = new Size(255, 85);
             btnAddWord.TabIndex = 1;
             btnAddWord.Text = "Kelime Ekle";
             btnAddWord.UseVisualStyleBackColor = true;
@@ -191,8 +199,9 @@
             panel2.Controls.Add(lblHome);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(223, 121);
+            panel2.Size = new Size(255, 161);
             panel2.TabIndex = 0;
             // 
             // lblHome
@@ -204,9 +213,9 @@
             lblHome.Cursor = Cursors.Hand;
             lblHome.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblHome.ForeColor = Color.White;
-            lblHome.Location = new Point(23, 40);
+            lblHome.Location = new Point(26, 53);
             lblHome.Name = "lblHome";
-            lblHome.Size = new Size(178, 45);
+            lblHome.Size = new Size(220, 54);
             lblHome.TabIndex = 14;
             lblHome.Text = "LoopLearn";
             lblHome.TextAlign = ContentAlignment.MiddleCenter;
@@ -215,20 +224,22 @@
             // 
             pnlContent.BackColor = Color.Transparent;
             pnlContent.Dock = DockStyle.Left;
-            pnlContent.Location = new Point(223, 0);
+            pnlContent.Location = new Point(255, 0);
+            pnlContent.Margin = new Padding(3, 4, 3, 4);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(1044, 681);
+            pnlContent.Size = new Size(1193, 673);
             pnlContent.TabIndex = 1;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.LoginPageBackground;
-            ClientSize = new Size(1264, 681);
+            ClientSize = new Size(1262, 673);
             Controls.Add(pnlContent);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;

@@ -190,7 +190,7 @@ namespace LoopLearn.Backend.Database
         SELECT w.WordID 
         FROM Words w
         INNER JOIN KnownWords k ON w.WordID = k.WordID
-        WHERE k.UserID = @userID AND LENGTH(w.EngWordName) <= @maxLen
+        WHERE k.UserID = @userID AND LENGTH(w.EngWordName) = @maxLen
         LIMIT @limit
     ";
 

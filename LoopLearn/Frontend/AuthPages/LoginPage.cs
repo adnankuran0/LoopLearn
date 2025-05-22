@@ -27,6 +27,7 @@ namespace LoopLearn.Frontend
             UserSession.Instance.SetUserData(tbxUsername.Text);
             AuthManager.Instance.Kill();
             PageManager.LoadForm(new MainForm());
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

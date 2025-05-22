@@ -22,6 +22,7 @@ namespace LoopLearn.Frontend
 
             isQuizActive = true;
             btnStartQuiz.Visible = false;
+            MessageBox.Show(Convert.ToString(dailyNewCount));
             exam = new Exam(dailyNewCount);
             ShowQuestionUI();
             LoadNextQuestion();
@@ -29,7 +30,7 @@ namespace LoopLearn.Frontend
 
         private void btnStartQuiz_Click(object sender, EventArgs e)
         {
-            StartQuiz(10);
+            StartQuiz(Properties.Settings.Default.DailyNewWordCount);
         }
 
         private bool ConfirmQuizStart()

@@ -28,18 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
+            comboBox2 = new ComboBox();
+            lblNewWordCount = new Label();
             SuspendLayout();
+            // 
+            // comboBox2
+            // 
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(510, 325);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(130, 28);
+            comboBox2.TabIndex = 1;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            // 
+            // lblNewWordCount
+            // 
+            lblNewWordCount.AutoSize = true;
+            lblNewWordCount.BackColor = Color.Transparent;
+            lblNewWordCount.ForeColor = Color.White;
+            lblNewWordCount.Location = new Point(317, 325);
+            lblNewWordCount.Name = "lblNewWordCount";
+            lblNewWordCount.Size = new Size(172, 20);
+            lblNewWordCount.TabIndex = 2;
+            lblNewWordCount.Text = "Günlük yeni kelime sayısı";
             // 
             // SettingsPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.LoginPageBackground;
+            Controls.Add(lblNewWordCount);
+            Controls.Add(comboBox2);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "SettingsPage";
-            Size = new Size(1039, 676);
+            Size = new Size(1187, 901);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+        private ComboBox comboBox2;
+        private Label lblNewWordCount;
     }
 }
