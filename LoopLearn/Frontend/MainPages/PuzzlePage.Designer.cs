@@ -28,33 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            checkBox1 = new CheckBox();
+            PuzzleName = new Label();
             SuspendLayout();
             // 
-            // checkBox1
+            // PuzzleName
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(23, 78);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(82, 19);
-            checkBox1.TabIndex = 0;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = true;
+            PuzzleName.AutoSize = true;
+            PuzzleName.BackColor = Color.MidnightBlue;
+            PuzzleName.Font = new Font("Arial", 32F);
+            PuzzleName.Location = new Point(372, 96);
+            PuzzleName.Name = "PuzzleName";
+            PuzzleName.Size = new Size(267, 61);
+            PuzzleName.TabIndex = 0;
+            PuzzleName.Text = "WORDLE";
             // 
             // PuzzlePage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.LoginPageBackground;
-            Controls.Add(checkBox1);
+            Controls.Add(PuzzleName);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "PuzzlePage";
-            Size = new Size(1039, 676);
+            Size = new Size(1280, 720);
+            Load += PuzzlePage_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private CheckBox checkBox1;
+        private Label PuzzleName;
     }
 }
