@@ -12,10 +12,17 @@ namespace LoopLearn.Frontend
         public MainForm()
         {
             InitializeComponent();
+
+           
+
+
+
             originalFontSize = btnAddWord.Font.Size;
             RegisterEvents();
         }
-
+        
+      
+     
         private void RegisterEvents()
         {
             btnAddWord.Click += (_, _) => NavigateTo(btnAddWord, new AddWordPage());
