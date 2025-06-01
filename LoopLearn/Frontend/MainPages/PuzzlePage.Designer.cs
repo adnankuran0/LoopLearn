@@ -34,9 +34,9 @@
             // PuzzleName
             // 
             PuzzleName.AutoSize = true;
-            PuzzleName.BackColor = Color.MidnightBlue;
+            PuzzleName.BackColor = Color.White;
             PuzzleName.Font = new Font("Arial", 32F);
-            PuzzleName.Location = new Point(372, 96);
+            PuzzleName.Location = new Point(372, 50);
             PuzzleName.Name = "PuzzleName";
             PuzzleName.Size = new Size(267, 61);
             PuzzleName.TabIndex = 0;

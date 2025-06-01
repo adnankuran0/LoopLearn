@@ -39,18 +39,17 @@
             panelMain.Location = new Point(-1, -1);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1462, 959);
+            panelMain.Size = new Size(1280, 720);
             panelMain.TabIndex = 0;
             // 
             // AuthForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1262, 673);
+            ClientSize = new Size(1264, 681);
             Controls.Add(panelMain);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "AuthForm";
             StartPosition = FormStartPosition.CenterScreen;

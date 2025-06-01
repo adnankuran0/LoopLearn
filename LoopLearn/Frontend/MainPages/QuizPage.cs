@@ -22,7 +22,6 @@ namespace LoopLearn.Frontend
 
             isQuizActive = true;
             btnStartQuiz.Visible = false;
-            MessageBox.Show(Convert.ToString(dailyNewCount));
             exam = new Exam(dailyNewCount);
             ShowQuestionUI();
             LoadNextQuestion();
