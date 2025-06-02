@@ -28,6 +28,16 @@ namespace LoopLearn.Backend.Database
             cmd.ExecuteNonQuery();
         }
 
+        public void IncrementWrongStat()
+        {
+            EnsureStatsRowExists();
+            using var conn = GetConnection();
+            string updateQuery = "UPDATE Stats SET WrongQuestionCount = WrongQuestionCount + 1 WHERE UserID = @userID";
+            using var cmd = new SQLiteCommand(updateQuery, conn);
+            cmd.Parameters.AddWithValue("@userID", UserSession.Instance.UserId);
+            cmd.ExecuteNonQuery();
+        }
+
         public void IncrementPuzzleStat()
         {
             EnsureStatsRowExists();
@@ -38,11 +48,11 @@ namespace LoopLearn.Backend.Database
             cmd.ExecuteNonQuery();
         }
 
-        public (int correctQuestions, int correctPuzzles)? GetStats()
+        public (int correctQuestions, int wrongQuestions ,int correctPuzzles)? GetStats()
         {
             EnsureStatsRowExists();
             using var conn = GetConnection();
-            string selectQuery = "SELECT CorrectQuestionCount, CorrectPuzzleCount FROM Stats WHERE UserID = @userID";
+            string selectQuery = "SELECT CorrectQuestionCount, CorrectPuzzleCount,WrongQuestionCount FROM Stats WHERE UserID = @userID";
             using var cmd = new SQLiteCommand(selectQuery, conn);
             cmd.Parameters.AddWithValue("@userID", UserSession.Instance.UserId);
 
@@ -51,7 +61,8 @@ namespace LoopLearn.Backend.Database
             {
                 int questions = reader.GetInt32(0);
                 int puzzles = reader.GetInt32(1);
-                return (questions, puzzles);
+                int wrongQuestions = reader.GetInt32(2);
+                return (questions, puzzles, wrongQuestions);
             }
             return null;
         }

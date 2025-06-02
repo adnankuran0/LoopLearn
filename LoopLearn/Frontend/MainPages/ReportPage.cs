@@ -8,6 +8,8 @@ namespace LoopLearn.Frontend
     {
         private string currentUsername = UserSession.Instance.UserName;
 
+        private string wrongQuestions;
+        private string totalAnseredQuestions;
         private string correctQuestions;
         private string correctPuzzles;
 
@@ -31,10 +33,16 @@ namespace LoopLearn.Frontend
             if (stats != null)
             {
                 correctQuestions = Convert.ToString(stats.Value.correctQuestions);
+                wrongQuestions = Convert.ToString(stats.Value.wrongQuestions);
                 correctPuzzles = Convert.ToString(stats.Value.correctPuzzles);
+                totalAnseredQuestions = Convert.ToString(stats.Value.wrongQuestions + stats.Value.correctQuestions);
 
+                totalQuestions.Text = $"Cevaplanan Sorular: {totalAnseredQuestions}";
                 labelCorrectQuestions.Text = $"Doğru Cevaplanan Sorular: {correctQuestions}";
+                labelWrongQuestions.Text = $"Yanlış Cevaplanan Sorular: {wrongQuestions}";
                 labelCorrectPuzzles.Text = $"Doğru Çözülen Bulmacalar: {correctPuzzles}";
+
+
             }
         }
 

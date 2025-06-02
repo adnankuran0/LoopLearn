@@ -46,7 +46,7 @@ namespace LoopLearn.Frontend
             int boxSize = 70;
             int spacing = 12;
             int totalWidth = Cols * boxSize + (Cols - 1) * spacing;
-            int startX = ((this.Width - totalWidth) / 2) - 150;
+            int startX = ((this.Width - totalWidth) / 2) - 50;
             int startY = 125;
 
             for (int row = 0; row < Rows; row++)

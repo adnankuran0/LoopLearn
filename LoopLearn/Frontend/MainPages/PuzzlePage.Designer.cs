@@ -34,23 +34,23 @@
             // PuzzleName
             // 
             PuzzleName.AutoSize = true;
-            PuzzleName.BackColor = Color.White;
-            PuzzleName.Font = new Font("Arial", 32F);
-            PuzzleName.Location = new Point(372, 50);
+            PuzzleName.BackColor = Color.Transparent;
+            PuzzleName.Font = new Font("Arial", 32F, FontStyle.Bold);
+            PuzzleName.ForeColor = Color.White;
+            PuzzleName.Location = new Point(408, 42);
             PuzzleName.Name = "PuzzleName";
-            PuzzleName.Size = new Size(267, 61);
+            PuzzleName.Size = new Size(211, 51);
             PuzzleName.TabIndex = 0;
             PuzzleName.Text = "WORDLE";
             // 
             // PuzzlePage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.LoginPageBackground;
             Controls.Add(PuzzleName);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "PuzzlePage";
-            Size = new Size(1280, 720);
+            Size = new Size(1120, 540);
             Load += PuzzlePage_Load;
             ResumeLayout(false);
             PerformLayout();

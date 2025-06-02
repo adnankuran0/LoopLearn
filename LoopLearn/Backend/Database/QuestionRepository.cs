@@ -6,7 +6,9 @@ namespace LoopLearn.Backend.Database
 {
     public class QuestionRepository : Repository
     {
-        public QuestionRepository(SqliteConnectionProvider ConnectionProvider) : base(ConnectionProvider) { }
+        public QuestionRepository(SqliteConnectionProvider ConnectionProvider) : base(ConnectionProvider) 
+        {
+        }
         public  Question? GetQuestionByID(int questionID)
         {
             if (WordManager.GetWordCount() < 4)
