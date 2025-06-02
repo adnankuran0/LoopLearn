@@ -29,7 +29,7 @@ Günlük kaç kelimenin sınav havuzuna dahil olacağını sen belirle.
 ## Puzzle Modülü
 Wordle tarzı bir mini oyun!
 Tamamen senin önceden öğrendiğin kelimelerden oluşan bir kelime bulmacası seni bekliyor.
-![Ekran Görüntüsü](Screenshots/Worlde.png)
+![Ekran Görüntüsü](Screenshots/Wordle.png)
 
 ## Rapor Modülü
 Bugüne kadar kaç test sorusu çözdün?
