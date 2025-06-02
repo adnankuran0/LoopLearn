@@ -4,16 +4,15 @@ LoopLearn, İngilizce kelime öğrenimini kolaylaştırmak için geliştirilen b
 
 ## Giriş Ekranı
 Giriş Yap: Kullanıcı adı ve şifre ile giriş yapılabilir.
-
 Üye Ol: Kullanıcı adı, şifre ve seçilen bir güvenlik sorusuna verilen cevap ile kayıt olunur.
-
 Şifremi Unuttum: Kullanıcı adı ve güvenlik sorusu cevabıyla yeni bir şifre belirlenebilir.
+![Ekran Görüntüsü](Screenshots/LoginPage.png)
 
 ## Uygulama İçeriği
 ## Kelime Ekleme Modülü
 Kendi kelime sözlüğünü oluştur!
 İngilizce kelime, Türkçesi, örnek bir cümle ve istersen kelimeye dair bir görselle birlikte uygulamaya eklenebilir.
-![Ekran Görüntüsü](Screenshots/LoginPage.png)
+![Ekran Görüntüsü](Screenshots/AddWord.png)
 
 ## Sınav Modülü
 “6 adım” algoritmasıyla hazırlanmış testleri çözerek kelimelerini pekiştir.
