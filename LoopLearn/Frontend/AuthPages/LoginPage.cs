@@ -25,8 +25,8 @@ namespace LoopLearn.Frontend
         private void OnLoginSuccess()
         {
             UserSession.Instance.SetUserData(tbxUsername.Text);
-            AuthManager.Instance.Kill();
-            PageManager.LoadForm(new MainForm());
+            AuthManager.Instance.Kill(); // Artık gerek kalmadı
+            PageManager.LoadForm(new MainForm()); // Ana forma geçiş
 
         }
 

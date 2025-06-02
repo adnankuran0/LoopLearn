@@ -13,6 +13,7 @@ namespace LoopLearn.Backend.Quiz
             get => _correctWord;
             set
             {
+                // Doğru kelime belirlendiyse örnek cümleyi al ve içindeki doğru kelimeyi gizle
                 _correctWord = value;
                 if (_correctWord != null)
                 {

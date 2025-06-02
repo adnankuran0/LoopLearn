@@ -11,11 +11,14 @@ namespace LoopLearn.Backend.Quiz
 
         public Exam(int dailyNewCount)
         {
+
+            //Sınav için uygun soruların IDlerini bul
             questions = new List<Question>();
             var newIds = DatabaseService.Instance.questionRepository.GetNewQuestionIDs(UserSession.Instance.UserId, dailyNewCount);
             var dueIds = DatabaseService.Instance.questionRepository.GetDueQuestionIDs(UserSession.Instance.UserId);
             var allIds = newIds.Concat(dueIds).Distinct();
 
+            //Soruları databaseden çek
             foreach (var qid in allIds)
             {
                 var q = DatabaseService.Instance.questionRepository.GetQuestionByID(qid);

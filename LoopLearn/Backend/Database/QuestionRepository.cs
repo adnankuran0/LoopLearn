@@ -63,7 +63,7 @@ namespace LoopLearn.Backend.Database
         public  string GetSampleByWordID(int wordID)
         {
             using var conn = GetConnection();
-            string query = "SELECT Samples FROM WordSamples WHERE WordID = @id LIMIT 1";
+            string query = "SELECT Samples FROM WordSamples WHERE WordID = @id LIMIT 2";
 
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@id", wordID);
@@ -96,6 +96,7 @@ namespace LoopLearn.Backend.Database
         public  List<int> GetNewQuestionIDs(int userID, int count)
         {
             using var conn = GetConnection();
+            //Eğer son cevap tarihi yoksa demek ki yeni eklenmiş bir soru
             using var cmd = new SQLiteCommand(
                 "SELECT QuestionID FROM Questions WHERE UserID = @uid AND LastAnsweredDate IS NULL LIMIT @cnt", conn);
             cmd.Parameters.AddWithValue("@uid", userID);

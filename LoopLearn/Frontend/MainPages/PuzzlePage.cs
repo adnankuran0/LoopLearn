@@ -83,8 +83,7 @@ namespace LoopLearn.Frontend
             int tries = 0;
             const int maxTries = 1000;
 
-            
-
+            // Kelimeyi gride yerleştirmeyi dene
             while (!placed && tries < maxTries)
             {
                 ClearGrid();
@@ -92,11 +91,9 @@ namespace LoopLearn.Frontend
                 tries++;
             }
 
-            
-
             if (!placed)
             {
-                MessageBox.Show("Kelime yerleştirilemedi. Lütfen uygulamayı yeniden başlatın.");
+                MessageBox.Show("Kelime yerleştirilemedi.");
                 return;
             }
 
@@ -308,6 +305,7 @@ namespace LoopLearn.Frontend
 
         private void ResetGame()
         {
+            // Oyunu sıfırla ve yeni bir kelime yerleştir
             selectedPositions.Clear();
             ClearGrid();
 
@@ -323,7 +321,7 @@ namespace LoopLearn.Frontend
 
             if (!placed)
             {
-                MessageBox.Show("Kelime yerleştirilemedi. Lütfen uygulamayı yeniden başlatın.");
+                MessageBox.Show("Kelime yerleştirilemedi.");
                 return;
             }
 

@@ -48,8 +48,6 @@ namespace LoopLearn.Backend.Database
             wordRepository = new WordRepository(connectionProvider);
             questionRepository = new QuestionRepository(connectionProvider);
             userStatsRepository = new UserStatsRepository(connectionProvider);
-
-            
         }
 
         public SQLiteConnection GetConnection()

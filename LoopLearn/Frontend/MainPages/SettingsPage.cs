@@ -18,6 +18,7 @@ namespace LoopLearn.Frontend
             InitializeComponent();
             Tag = "Settings";
 
+            //Seçilebilir günlük yeni soru miktarı
             comboBox2.Items.AddRange(new object[] { 5, 10, 15, 20, 30 });
             int savedValue = Properties.Settings.Default.DailyNewWordCount;
 

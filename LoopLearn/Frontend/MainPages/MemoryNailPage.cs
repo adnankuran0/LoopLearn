@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace LoopLearn.Frontend
 {
+    // TODO: Implement AI
     public partial class MemoryNailPage : UserControl
     {
         public MemoryNailPage()

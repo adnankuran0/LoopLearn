@@ -40,7 +40,7 @@ namespace LoopLearn.Backend.Database
 
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@u", username);
-            long count = (long)cmd.ExecuteScalar();
+            int count = (int)cmd.ExecuteScalar();
 
             return count > 0;
         }

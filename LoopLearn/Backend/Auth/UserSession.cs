@@ -2,6 +2,7 @@
 
 namespace LoopLearn.Backend.Auth
 {
+    //Giriş yapılan kullanıcının bilgilerini tutar
     public class UserSession
     {
         private static UserSession? instance;

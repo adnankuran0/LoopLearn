@@ -28,29 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            checkedListBox1 = new CheckedListBox();
             SuspendLayout();
             // 
-            // checkedListBox1
-            // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(27, 56);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(120, 94);
-            checkedListBox1.TabIndex = 0;
-            // 
-            // MemoryNail
+            // MemoryNailPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(checkedListBox1);
-            Name = "MemoryNail";
+            Name = "MemoryNailPage";
             Size = new Size(1039, 676);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private CheckedListBox checkedListBox1;
     }
 }
