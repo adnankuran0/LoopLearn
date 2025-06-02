@@ -9,7 +9,7 @@ namespace LoopLearn.Frontend
         private string currentUsername = UserSession.Instance.UserName;
 
         private string wrongQuestions;
-        private string totalAnseredQuestions;
+        private string totalAnsweredQuestions;
         private string correctQuestions;
         private string correctPuzzles;
 
@@ -35,9 +35,9 @@ namespace LoopLearn.Frontend
                 correctQuestions = Convert.ToString(stats.Value.correctQuestions);
                 wrongQuestions = Convert.ToString(stats.Value.wrongQuestions);
                 correctPuzzles = Convert.ToString(stats.Value.correctPuzzles);
-                totalAnseredQuestions = Convert.ToString(stats.Value.wrongQuestions + stats.Value.correctQuestions);
+                totalAnsweredQuestions = Convert.ToString(stats.Value.wrongQuestions + stats.Value.correctQuestions);
 
-                totalQuestions.Text = $"Cevaplanan Sorular: {totalAnseredQuestions}";
+                totalQuestions.Text = $"Cevaplanan Sorular: {totalAnsweredQuestions}";
                 labelCorrectQuestions.Text = $"Doğru Cevaplanan Sorular: {correctQuestions}";
                 labelWrongQuestions.Text = $"Yanlış Cevaplanan Sorular: {wrongQuestions}";
                 labelCorrectPuzzles.Text = $"Doğru Çözülen Bulmacalar: {correctPuzzles}";
@@ -66,9 +66,15 @@ namespace LoopLearn.Frontend
             yPos += 40;
             e.Graphics.DrawString($"Kullanıcı: {currentUsername}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
             yPos += 30;
-            e.Graphics.DrawString($"Doğru Sorular: {correctQuestions}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
+            e.Graphics.DrawString($"Cevaplanan Sorular: {totalAnsweredQuestions}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
             yPos += 25;
+            e.Graphics.DrawString($"Doğru Sorular: {correctQuestions}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
+            yPos += 20;
+            e.Graphics.DrawString($"Yanlış Sorular: {wrongQuestions}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
+            yPos += 15;
             e.Graphics.DrawString($"Doğru Bulmacalar: {correctPuzzles}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
+
+
         }
     }
 }
