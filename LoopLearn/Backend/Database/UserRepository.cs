@@ -1,11 +1,16 @@
 ﻿using LoopLearn.Backend.Auth;
 using System.Data.SQLite;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LoopLearn.Backend.Database
 {
     public class UserRepository : Repository
     {
-        public UserRepository(SqliteConnectionProvider ConnectionProvider) : base(ConnectionProvider) { }
+        public UserRepository(SqliteConnectionProvider ConnectionProvider) : base(ConnectionProvider)
+        {
+            
+        }
+
         public bool AddUser(string username, string password, string securityAnswer)
         {
             if (UserExists(username)) return false;

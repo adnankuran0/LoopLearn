@@ -54,6 +54,10 @@ namespace LoopLearn.Frontend
 
         private void ShowAnswerFeedback(bool isCorrect)
         {
+            if ( isCorrect )
+            {
+                DatabaseService.Instance.userStatsRepository.IncrementQuizStat();
+            }
             string message = isCorrect ? "Tebrikler! Doğru cevap." : "Maalesef yanlış cevap.";
             MessageBoxIcon icon = isCorrect ? MessageBoxIcon.Information : MessageBoxIcon.Error;
             MessageBox.Show(message, "Bilgi", MessageBoxButtons.OK, icon);

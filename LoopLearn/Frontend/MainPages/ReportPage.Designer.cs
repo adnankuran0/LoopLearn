@@ -28,31 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            labelCorrectQuestions = new Label();
+            labelCorrectPuzzles = new Label();
+            btnPrintStats = new Button();
             SuspendLayout();
             // 
-            // button1
+            // labelCorrectQuestions
             // 
-            button1.Location = new Point(5, 130);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            labelCorrectQuestions.AutoSize = true;
+            labelCorrectQuestions.BackColor = Color.Transparent;
+            labelCorrectQuestions.ForeColor = Color.White;
+            labelCorrectQuestions.Location = new Point(425, 260);
+            labelCorrectQuestions.Name = "labelCorrectQuestions";
+            labelCorrectQuestions.Size = new Size(38, 15);
+            labelCorrectQuestions.TabIndex = 0;
+            labelCorrectQuestions.Text = "label1";
+            labelCorrectQuestions.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelCorrectPuzzles
+            // 
+            labelCorrectPuzzles.AutoSize = true;
+            labelCorrectPuzzles.BackColor = Color.Transparent;
+            labelCorrectPuzzles.ForeColor = Color.White;
+            labelCorrectPuzzles.Location = new Point(425, 295);
+            labelCorrectPuzzles.Name = "labelCorrectPuzzles";
+            labelCorrectPuzzles.Size = new Size(38, 15);
+            labelCorrectPuzzles.TabIndex = 1;
+            labelCorrectPuzzles.Text = "label2";
+            labelCorrectPuzzles.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnPrintStats
+            // 
+            btnPrintStats.Location = new Point(425, 371);
+            btnPrintStats.Name = "btnPrintStats";
+            btnPrintStats.Size = new Size(158, 23);
+            btnPrintStats.TabIndex = 2;
+            btnPrintStats.Text = "Raporu yazdır";
+            btnPrintStats.UseVisualStyleBackColor = true;
+            btnPrintStats.Click += btnPrintStats_Click;
             // 
             // Report
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.LoginPageBackground;
-            Controls.Add(button1);
+            Controls.Add(btnPrintStats);
+            Controls.Add(labelCorrectPuzzles);
+            Controls.Add(labelCorrectQuestions);
             Name = "Report";
             Size = new Size(1039, 676);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private Label labelCorrectQuestions;
+        private Label labelCorrectPuzzles;
+        private Button btnPrintStats;
     }
 }

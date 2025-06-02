@@ -269,6 +269,7 @@ namespace LoopLearn.Frontend
             {
                 MessageBox.Show("Tebrikler! Kelime doğru.");
                 HighlightWord(Color.LightGreen);
+                DatabaseService.Instance.userStatsRepository.IncrementPuzzleStat();
 
                 System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
                 t.Interval = 1000;

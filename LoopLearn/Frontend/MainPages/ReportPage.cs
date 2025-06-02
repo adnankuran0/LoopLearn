@@ -1,21 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using LoopLearn.Backend.Auth;
+using LoopLearn.Backend.Database;
+using System.Drawing.Printing;
 
 namespace LoopLearn.Frontend
 {
     public partial class Report : UserControl
     {
+        private string currentUsername = UserSession.Instance.UserName;
+
+        private string correctQuestions;
+        private string correctPuzzles;
+
+
         public Report()
         {
             InitializeComponent();
-            Tag = "Report";
+            LoadStats();
+        }
+
+        private void LoadStats()
+        {
+            var user = DatabaseService.Instance.userRepository.GetUserData(currentUsername);
+            if (user == null)
+            {
+                MessageBox.Show("Kullanıcı bulunamadı.");
+                return;
+            }
+
+            var stats = DatabaseService.Instance.userStatsRepository.GetStats();
+            if (stats != null)
+            {
+                correctQuestions = Convert.ToString(stats.Value.correctQuestions);
+                correctPuzzles = Convert.ToString(stats.Value.correctPuzzles);
+
+                labelCorrectQuestions.Text = $"Doğru Cevaplanan Sorular: {correctQuestions}";
+                labelCorrectPuzzles.Text = $"Doğru Çözülen Bulmacalar: {correctPuzzles}";
+            }
+        }
+
+        private void btnPrintStats_Click(object sender, EventArgs e)
+        {
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrintPage += PrintStatsPage;
+            PrintDialog dialog = new PrintDialog();
+            dialog.Document = printDoc;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                printDoc.Print();
+        }
+
+        private void PrintStatsPage(object sender, PrintPageEventArgs e)
+        {
+            float yPos = 100;
+            float leftMargin = e.MarginBounds.Left;
+
+            e.Graphics.DrawString("LoopLearn - Kullanıcı İstatistik Raporu", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, leftMargin, yPos);
+            yPos += 40;
+            e.Graphics.DrawString($"Kullanıcı: {currentUsername}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
+            yPos += 30;
+            e.Graphics.DrawString($"Doğru Sorular: {correctQuestions}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
+            yPos += 25;
+            e.Graphics.DrawString($"Doğru Bulmacalar: {correctPuzzles}", new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
         }
     }
 }

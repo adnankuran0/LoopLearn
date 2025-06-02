@@ -26,6 +26,7 @@ namespace LoopLearn.Backend.Database
         public UserRepository userRepository;
         public WordRepository wordRepository;
         public QuestionRepository questionRepository;
+        public UserStatsRepository userStatsRepository;
 
         private static DatabaseService? instance;
 
@@ -46,6 +47,7 @@ namespace LoopLearn.Backend.Database
             userRepository = new UserRepository(connectionProvider);
             wordRepository = new WordRepository(connectionProvider);
             questionRepository = new QuestionRepository(connectionProvider);
+            userStatsRepository = new UserStatsRepository(connectionProvider);
 
             
         }
