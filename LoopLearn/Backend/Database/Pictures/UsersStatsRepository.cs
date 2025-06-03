@@ -62,7 +62,7 @@ namespace LoopLearn.Backend.Database
                 int questions = reader.GetInt32(0);
                 int puzzles = reader.GetInt32(1);
                 int wrongQuestions = reader.GetInt32(2);
-                return (questions, puzzles, wrongQuestions);
+                return (questions, wrongQuestions, puzzles );
             }
             return null;
         }

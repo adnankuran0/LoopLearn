@@ -37,6 +37,7 @@ namespace LoopLearn.Frontend
                 correctPuzzles = Convert.ToString(stats.Value.correctPuzzles);
                 totalAnsweredQuestions = Convert.ToString(stats.Value.wrongQuestions + stats.Value.correctQuestions);
 
+
                 totalQuestions.Text = $"Cevaplanan Sorular: {totalAnsweredQuestions}";
                 labelCorrectQuestions.Text = $"Doğru Cevaplanan Sorular: {correctQuestions}";
                 labelWrongQuestions.Text = $"Yanlış Cevaplanan Sorular: {wrongQuestions}";
